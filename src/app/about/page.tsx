@@ -39,7 +39,7 @@ export default function AboutPage() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-black text-white px-0 py-0">
+    <div className="min-h-screen flex flex-col items-center text-black px-0 py-0">
       {/* Main content wrapper - centered and with specific max-width and internal padding */}
       {/* Increased pt- value to push content down further from the global navbar. */}
       {/* This value might need slight manual tuning based on the final header height. */}

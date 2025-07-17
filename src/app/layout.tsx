@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google"; // Keeping Geist as it's already defined
 import "./globals.css";
 import Header from "./components/Header"; // Import the Header component
+import InteractiveLiquidBackground from "./components/InteractiveLiquidHomepage";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,8 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-800 text-white`}> {/* Set background and text color */}
-        <Header /> {/* Render the Header component here */}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-800 text-black`}> {/* Set background and text color */}
+        <InteractiveLiquidBackground/>
+        <Header/>
         <main>
           {children}
         </main>

@@ -17,7 +17,7 @@ export default function WorkPage() {
     : projectsData.filter(project => project.type === activeFilter);
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-black text-white px-0 py-0">
+    <div className="min-h-screen flex flex-col items-center text-white px-0 py-0">
       {/* Main content wrapper - centered and with specific max-width and internal padding */}
       {/* pt-32 to push content down from global header */}
       <div className="w-full max-w-[1400px] px-8 md:px-16 lg:px-24 pt-32 pb-16 mx-auto">

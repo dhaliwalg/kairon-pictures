@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Project } from '@/data/projects';
+import Image from 'next/image';
 
 interface ProjectCardProps {
   project: Project;
@@ -22,7 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img
+      <Image
         src={isHovered ? project.gifUrl : project.thumbnailUrl}
         alt={project.title}
         className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"

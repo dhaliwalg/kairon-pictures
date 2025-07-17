@@ -2,7 +2,7 @@
 'use client'; // This page needs client-side state for filtering
 
 import React, { useState } from 'react';
-import { projectsData, Project } from '@/data/projects'; // Import data and type
+import { projectsData } from '@/data/projects'; // Import data and type
 import ProjectCard from '@/app/components/ProjectCard'; // Import the ProjectCard component
 
 // Define the available filter types

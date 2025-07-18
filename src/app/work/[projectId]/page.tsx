@@ -61,8 +61,7 @@ export default function ProjectDetailsPage() {
             src={`https://player.vimeo.com/video/${project.vimeoId}?autoplay=0&loop=0&byline=0&portrait=0&title=0`}
             width="100%"
             height="100%"
-            frameBorder="0"
-            allow="autoplay; fullscreen; picture-in-picture"
+            allow="autoplay; fullscreen;"
             allowFullScreen
             className="w-full h-full object-cover"
             title={project.title}

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kairon Pictures", // Updated title [cite: 1]
+  title: "Kairon Pictures",
   description: "Creative production company specializing in narrative, commercial, fashion, and music video productions.", // Updated description [cite: 23]
 };
 

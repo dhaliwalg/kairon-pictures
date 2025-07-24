@@ -32,12 +32,12 @@ export default function RootLayout({
       >
         <div className="fixed inset-0 z-0">
           <Iridescence
-            color={[0.64, 0.59, 0.8]}
+            color={[0.61, 0.59, 0.8]}
             speed={0.8}
-            amplitude={0.15}
+            amplitude={0.8}
             mouseReact={true}
-            mouseRadius={0.4}
-            mouseStrength={0.2}
+            mouseRadius={0.8}
+            mouseStrength={0.25}
           />
         </div>
         {/* This div contains ALL foreground UI (Header, main content). */}

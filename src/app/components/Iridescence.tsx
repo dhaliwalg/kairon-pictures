@@ -25,6 +25,7 @@ uniform float uAmplitude;
 uniform float uSpeed;
 uniform float uMouseRadius;
 uniform float uMouseStrength;
+uniform float uMouseActive; // New uniform to track if mouse is active
 
 varying vec2 vUv;
 
@@ -37,20 +38,23 @@ void main() {
   vec2 diff = uv - mouseUV;
   float dist = length(diff);
 
-  // Apply push-away effect
-  float mouseEffect = max(0.0, 1.0 - dist / uMouseRadius);
-  vec2 displacedUV = uv - normalize(diff) * mouseEffect * uMouseStrength;
+  // Improved falloff with smoother feathering and expanded area
+  float normalizedDist = dist / uMouseRadius;
+  
+  // Use smoothstep for feathered edges and expand the effective area
+  float mouseEffect = smoothstep(1.2, 0.0, normalizedDist) * uMouseActive;
+  
+  // Reduce the pinching effect in the center by using a softer curve
+  float centerSoftening = mix(0.3, 1.0, smoothstep(0.0, 0.4, normalizedDist));
+  mouseEffect *= centerSoftening;
 
-  // Original iridescence effect applied to displacedUV
-  // This line can be kept if you want a subtle overall shift based on mouse position,
-  // in addition to the push-away. If you only want the push-away, consider removing or adjusting it.
-  // displacedUV += (uMouse - vec2(0.5)) * uAmplitude;
+  vec2 displacedUV = uv - normalize(diff) * mouseEffect * uMouseStrength;
 
   float d = -uTime * 0.5 * uSpeed;
   float a = 0.0;
   for (float i = 0.0; i < 8.0; ++i) {
-    a += cos(i - d - a * displacedUV.x); // Use displacedUV
-    d += sin(displacedUV.y * i + a); // Use displacedUV
+    a += cos(i - d - a * displacedUV.x);
+    d += sin(displacedUV.y * i + a);
   }
   d += uTime * 0.5 * uSpeed;
   vec3 col = vec3(cos(displacedUV * vec2(d, a)) * 0.6 + 0.4, cos(a + d) * 0.5 + 0.5);
@@ -73,12 +77,13 @@ export default function Iridescence({
   speed = 1.0,
   amplitude = 0.1,
   mouseReact = true,
-  mouseRadius = 0.5,
-  mouseStrength = 0.1,
+  mouseRadius = 0.7, // Increased default radius for larger area
+  mouseStrength = 0.08, // Slightly reduced strength to compensate for larger area
   ...rest
 }: IridescenceProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0.5, y: 0.5 });
+  const isMouseActive = useRef(false);
 
   useEffect(() => {
     if (!ctnDom.current) return;
@@ -107,6 +112,7 @@ export default function Iridescence({
         uSpeed: { value: speed },
         uMouseRadius: { value: mouseRadius },
         uMouseStrength: { value: mouseStrength },
+        uMouseActive: { value: 0.0 }, // Initialize as inactive
       },
     });
 
@@ -143,9 +149,28 @@ export default function Iridescence({
       mousePos.current = { x, y };
       program.uniforms.uMouse.value[0] = x;
       program.uniforms.uMouse.value[1] = y;
+
+      // Mark mouse as active when moving
+      if (!isMouseActive.current) {
+        isMouseActive.current = true;
+        program.uniforms.uMouseActive.value = 1.0;
+      }
     }
+
+    function handleMouseEnter() {
+      isMouseActive.current = true;
+      program.uniforms.uMouseActive.value = 1.0;
+    }
+
+    function handleMouseLeave() {
+      isMouseActive.current = false;
+      program.uniforms.uMouseActive.value = 0.0;
+    }
+
     if (mouseReact) {
       ctn.addEventListener("mousemove", handleMouseMove);
+      ctn.addEventListener("mouseenter", handleMouseEnter);
+      ctn.addEventListener("mouseleave", handleMouseLeave);
     }
 
     return () => {
@@ -153,6 +178,8 @@ export default function Iridescence({
       window.removeEventListener("resize", resize);
       if (mouseReact) {
         ctn.removeEventListener("mousemove", handleMouseMove);
+        ctn.removeEventListener("mouseenter", handleMouseEnter);
+        ctn.removeEventListener("mouseleave", handleMouseLeave);
       }
       ctn.removeChild(gl.canvas);
       gl.getExtension("WEBGL_lose_context")?.loseContext();

@@ -42,7 +42,9 @@ void main() {
   vec2 displacedUV = uv - normalize(diff) * mouseEffect * uMouseStrength;
 
   // Original iridescence effect applied to displacedUV
-  displacedUV += (uMouse - vec2(0.5)) * uAmplitude; // This line might be redundant or needs adjustment with new mouse effect
+  // This line can be kept if you want a subtle overall shift based on mouse position,
+  // in addition to the push-away. If you only want the push-away, consider removing or adjusting it.
+  // displacedUV += (uMouse - vec2(0.5)) * uAmplitude;
 
   float d = -uTime * 0.5 * uSpeed;
   float a = 0.0;
@@ -85,24 +87,8 @@ export default function Iridescence({
     const gl = renderer.gl;
     gl.clearColor(1, 1, 1, 1);
 
-    let program: Program;
-
-    function resize() {
-      const scale = 1;
-      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
-      if (program) {
-        program.uniforms.uResolution.value = new Color(
-          gl.canvas.width,
-          gl.canvas.height,
-          gl.canvas.width / gl.canvas.height
-        );
-      }
-    }
-    window.addEventListener("resize", resize, false);
-    resize();
-
-    const geometry = new Triangle(gl);
-    program = new Program(gl, {
+    // Change 'let program: Program;' to 'const program:'
+    const program: Program = new Program(gl, {
       vertex: vertexShader,
       fragment: fragmentShader,
       uniforms: {
@@ -123,7 +109,25 @@ export default function Iridescence({
       },
     });
 
-    const mesh = new Mesh(gl, { geometry, program });
+    const mesh = new Mesh(gl, { geometry: new Triangle(gl), program }); // geometry can also be const here.
+
+    // Move the initial resize call after program and mesh are defined
+    // so that program.uniforms.uResolution is set correctly on first render.
+    function resize() {
+      const scale = 1;
+      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
+      // Ensure program exists before accessing its uniforms
+      if (program) {
+        program.uniforms.uResolution.value = new Color(
+          gl.canvas.width,
+          gl.canvas.height,
+          gl.canvas.width / gl.canvas.height
+        );
+      }
+    }
+    window.addEventListener("resize", resize, false);
+    resize(); // Call resize after program is initialized
+
     let animateId: number;
 
     function update(t: number) {

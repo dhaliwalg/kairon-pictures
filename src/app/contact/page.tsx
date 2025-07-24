@@ -1,9 +1,8 @@
-// app/about/page.tsx
-import React from 'react';
+import React from "react";
 
 export const metadata = {
-  title: 'Kairon Pictures - Contact',
-  description: 'Contact Kairon Pictures for inquiries.',
+  title: "Kairon Pictures - Contact",
+  description: "Contact Kairon Pictures for inquiries.",
 };
 
 export default function ContactPage() {

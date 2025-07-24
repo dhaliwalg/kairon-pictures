@@ -16,7 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Kairon Pictures",
-  description: "Creative production company specializing in narrative, commercial, fashion, and music video productions.",
+  description:
+    "Creative production company specializing in narrative, commercial, fashion, and music video productions.",
 };
 
 export default function RootLayout({
@@ -26,31 +27,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-black h-full`}>
-        {/* Iridescence background - it needs to be the target of mouse events */}
-        {/* z-0 is fine, but it needs to be the 'highest' element capable of receiving events */}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-black h-full`}
+      >
         <div className="fixed inset-0 z-0">
-     <Iridescence
-            color={[0.64, 0.59, 0.8]} 
-        speed={0.8}
-        amplitude={0.15}  
-        mouseReact={true}
-        mouseRadius={0.4}   // Adjust for wider/narrower influence
-        mouseStrength={0.20} // Adjust for stronger/weaker push
-      />
+          <Iridescence
+            color={[0.64, 0.59, 0.8]}
+            speed={0.8}
+            amplitude={0.15}
+            mouseReact={true}
+            mouseRadius={0.4}
+            mouseStrength={0.2}
+          />
         </div>
-
-        {/* This div contains ALL your foreground UI (Header, main content). */}
+        {/* This div contains ALL foreground UI (Header, main content). */}
         {/* It must have pointer-events-none to allow events to pass through to Iridescence. */}
         {/* Then, re-enable pointer-events for specific interactive elements within it. */}
-        <div className="relative z-10 min-h-screen flex flex-col pointer-events-none"> {/* ADDED pointer-events-none */}
-          
-          {/* Header needs its interactive elements to work, so we re-enable pointer events */}
-          <Header/> {/* We'll modify Header.tsx too */}
-          
-          <main className="flex-grow">
-            {children} {/* This content also needs pointer-events-auto for interactions */}
-          </main>
+        <div className="relative z-10 min-h-screen flex flex-col pointer-events-none">
+          <Header />
+          <main className="flex-grow">{children}</main>
         </div>
       </body>
     </html>

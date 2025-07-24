@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
 import { useEffect, useRef } from "react";
 
@@ -23,8 +23,8 @@ uniform vec3 uResolution;
 uniform vec2 uMouse;
 uniform float uAmplitude;
 uniform float uSpeed;
-uniform float uMouseRadius; // New uniform for mouse interaction radius
-uniform float uMouseStrength; // New uniform for mouse interaction strength
+uniform float uMouseRadius;
+uniform float uMouseStrength;
 
 varying vec2 vUv;
 
@@ -33,7 +33,7 @@ void main() {
   vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
 
   // Calculate mouse displacement
-  vec2 mouseUV = (uMouse * 2.0 - 1.0) * uResolution.xy / mr; // Normalize mouse coordinates to match uv range
+  vec2 mouseUV = (uMouse * 2.0 - 1.0) * uResolution.xy / mr;
   vec2 diff = uv - mouseUV;
   float dist = length(diff);
 
@@ -53,7 +53,7 @@ void main() {
     d += sin(displacedUV.y * i + a); // Use displacedUV
   }
   d += uTime * 0.5 * uSpeed;
-  vec3 col = vec3(cos(displacedUV * vec2(d, a)) * 0.6 + 0.4, cos(a + d) * 0.5 + 0.5); // Use displacedUV
+  vec3 col = vec3(cos(displacedUV * vec2(d, a)) * 0.6 + 0.4, cos(a + d) * 0.5 + 0.5);
   col = cos(col * cos(vec3(d, a, 2.5)) * 0.5 + 0.5) * uColor;
   gl_FragColor = vec4(col, 1.0);
 }
@@ -64,8 +64,8 @@ interface IridescenceProps {
   speed?: number;
   amplitude?: number;
   mouseReact?: boolean;
-  mouseRadius?: number; // New prop
-  mouseStrength?: number; // New prop
+  mouseRadius?: number;
+  mouseStrength?: number;
 }
 
 export default function Iridescence({
@@ -73,8 +73,8 @@ export default function Iridescence({
   speed = 1.0,
   amplitude = 0.1,
   mouseReact = true,
-  mouseRadius = 0.5, // Default value for mouse interaction radius
-  mouseStrength = 0.1, // Default value for mouse interaction strength
+  mouseRadius = 0.5,
+  mouseStrength = 0.1,
   ...rest
 }: IridescenceProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
@@ -87,7 +87,6 @@ export default function Iridescence({
     const gl = renderer.gl;
     gl.clearColor(1, 1, 1, 1);
 
-    // Change 'let program: Program;' to 'const program:'
     const program: Program = new Program(gl, {
       vertex: vertexShader,
       fragment: fragmentShader,
@@ -98,35 +97,34 @@ export default function Iridescence({
           value: new Color(
             gl.canvas.width,
             gl.canvas.height,
-            gl.canvas.width / gl.canvas.height
+            gl.canvas.width / gl.canvas.height,
           ),
         },
-        uMouse: { value: new Float32Array([mousePos.current.x, mousePos.current.y]) },
+        uMouse: {
+          value: new Float32Array([mousePos.current.x, mousePos.current.y]),
+        },
         uAmplitude: { value: amplitude },
         uSpeed: { value: speed },
-        uMouseRadius: { value: mouseRadius }, // Pass new uniform
-        uMouseStrength: { value: mouseStrength }, // Pass new uniform
+        uMouseRadius: { value: mouseRadius },
+        uMouseStrength: { value: mouseStrength },
       },
     });
 
-    const mesh = new Mesh(gl, { geometry: new Triangle(gl), program }); // geometry can also be const here.
+    const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
 
-    // Move the initial resize call after program and mesh are defined
-    // so that program.uniforms.uResolution is set correctly on first render.
     function resize() {
       const scale = 1;
       renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
-      // Ensure program exists before accessing its uniforms
       if (program) {
         program.uniforms.uResolution.value = new Color(
           gl.canvas.width,
           gl.canvas.height,
-          gl.canvas.width / gl.canvas.height
+          gl.canvas.width / gl.canvas.height,
         );
       }
     }
     window.addEventListener("resize", resize, false);
-    resize(); // Call resize after program is initialized
+    resize();
 
     let animateId: number;
 
@@ -141,7 +139,7 @@ export default function Iridescence({
     function handleMouseMove(e: MouseEvent) {
       const rect = ctn.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
-      const y = 1.0 - (e.clientY - rect.top) / rect.height; // Invert y for typical WebGL/shader coordinates
+      const y = 1.0 - (e.clientY - rect.top) / rect.height;
       mousePos.current = { x, y };
       program.uniforms.uMouse.value[0] = x;
       program.uniforms.uMouse.value[1] = y;
@@ -159,13 +157,7 @@ export default function Iridescence({
       ctn.removeChild(gl.canvas);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [color, speed, amplitude, mouseReact, mouseRadius, mouseStrength]); // Add new props to dependency array
+  }, [color, speed, amplitude, mouseReact, mouseRadius, mouseStrength]);
 
-  return (
-    <div
-      ref={ctnDom}
-      className="w-full h-full"
-      {...rest}
-    />
-  );
+  return <div ref={ctnDom} className="w-full h-full" {...rest} />;
 }

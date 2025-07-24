@@ -1,9 +1,8 @@
-// app/work/[projectId]/page.tsx
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { projectsData, Project } from '@/data/projects';
+import React, { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { projectsData, Project } from "@/data/projects";
 
 export default function ProjectDetailsPage() {
   const params = useParams();
@@ -16,7 +15,7 @@ export default function ProjectDetailsPage() {
 
   useEffect(() => {
     if (!isNaN(projectId)) {
-      const foundProject = projectsData.find(p => p.id === projectId);
+      const foundProject = projectsData.find((p) => p.id === projectId);
       setProject(foundProject || null);
       setLoading(false);
     } else {
@@ -37,9 +36,11 @@ export default function ProjectDetailsPage() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center text-black bg-transparent px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">Project Not Found</h1>
-        <p className="text-lg">The project you are looking for does not exist.</p>
+        <p className="text-lg">
+          The project you are looking for does not exist.
+        </p>
         <button
-          onClick={() => router.push('/work')}
+          onClick={() => router.push("/work")}
           className="mt-6 bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition-colors duration-200"
         >
           Back to Work
@@ -49,10 +50,8 @@ export default function ProjectDetailsPage() {
   }
 
   return (
-    // Main container has no background here, letting global LiquidBackground show
     <div className="min-h-screen flex flex-col text-black">
-      {/* Spacer for fixed header - This needs to push content down from your actual Header component */}
-      <div className="pt-[64px] md:pt-[80px] lg:pt-[96px]"></div> {/* Fine-tune this based on your Header's height */}
+      <div className="pt-[64px] md:pt-[80px] lg:pt-[96px]"></div>
 
       {/* Vimeo Video Embed - Takes full width, has its own black background */}
       <div className="w-full bg-black aspect-video flex-shrink-0">
@@ -80,7 +79,7 @@ export default function ProjectDetailsPage() {
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase leading-none mb-1 tracking-tighter text-black">
             {project.title}
           </h2>
-          {/* KAIRON PICTURES text: Now font-bold */}
+          {/* KAIRON PICTURES text */}
           <p className="text-sm md:text-base font-bold text-gray-700">
             KAIRON PICTURES
           </p>

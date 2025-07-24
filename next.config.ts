@@ -3,10 +3,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "placehold.co",
+        port: "",
+        pathname: "/**",
       },
       // Add other image domains you're using
       // {
@@ -17,7 +17,7 @@ const nextConfig = {
       // },
     ],
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
+    contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 };

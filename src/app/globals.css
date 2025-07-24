@@ -1,13 +1,11 @@
 /* app/globals.css */
-
-/* Tailwind CSS v4 import - correct for your setup */
 @import "tailwindcss";
+@tailwind utilities;
 
 /* Define your custom properties/CSS variables for the dark theme */
-/* For Kairon Pictures, we're assuming a consistently dark background */
 :root {
   --background: #000000; /* Pure black for the background, as seen in PPT */
-  --foreground: #FFFFFF; /* Pure white for text, as seen in PPT */
+  --foreground: #ffffff; /* Pure white for text, as seen in PPT */
 
   /* Keep your Geist font variables */
   --font-geist-sans: "Geist Sans", sans-serif; /* Fallback for Geist Sans */
@@ -23,34 +21,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* No @media (prefers-color-scheme: dark) block needed here if the site is always dark. */
-/* If you ever want a light mode, you'd add a [data-theme='light'] selector or similar here */
-/* that overrides the :root variables. */
-
 /* Basic body styles */
 body {
   background: var(--background); /* Use the CSS variable for background */
-  color: var(--foreground);     /* Use the CSS variable for text color */
+  color: var(--foreground); /* Use the CSS variable for text color */
 
-  /* Apply your Geist sans font as the primary font-family */
   font-family: var(--font-geist-sans);
-
-  /* Add font smoothing for better text rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Ensure body takes full height and width */
   min-height: 100vh;
   width: 100%;
 }
 
-/* Any other global styles not managed by Tailwind utility classes can go here */
-/* For example, if you have specific reset styles or normalize.css */
-/* app/globals.css */
-@tailwind utilities;
-
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  height: 100%; /* Essential for full screen backgrounds */
+  height: 100%;
 }

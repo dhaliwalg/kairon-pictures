@@ -1,10 +1,10 @@
 // app/page.tsx
-'use client'; // This component uses client-side hooks
+'use client';
 
 export default function HomePage() {
-
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="flex items-center justify-center min-h-screen text-white text-3xl">
+      <p>home page</p>
     </div>
   );
 }

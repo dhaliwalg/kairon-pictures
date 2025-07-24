@@ -46,3 +46,11 @@ body {
 
 /* Any other global styles not managed by Tailwind utility classes can go here */
 /* For example, if you have specific reset styles or normalize.css */
+/* app/globals.css */
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Essential for full screen backgrounds */
+}

@@ -31,7 +31,7 @@ export default function RootLayout({
         {/* z-0 is fine, but it needs to be the 'highest' element capable of receiving events */}
         <div className="fixed inset-0 z-0">
      <Iridescence
-        color={[0.6, 0.6, 1.0]} // Example color
+            color={[0.64, 0.59, 0.8]} 
         speed={0.8}
         amplitude={0.15}  
         mouseReact={true}

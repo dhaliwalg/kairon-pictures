@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { projectsData, Project } from "@/data/projects";
+import { projectsData, Project } from "@/data/projects"; // Assuming Project interface is here
 
 export default function ProjectDetailsPage() {
   const params = useParams();
@@ -26,7 +26,7 @@ export default function ProjectDetailsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-black bg-transparent">
+      <div className="min-h-screen flex items-center justify-center text-black">
         Loading project details...
       </div>
     );
@@ -34,7 +34,7 @@ export default function ProjectDetailsPage() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-black bg-transparent px-4 py-8">
+      <div className="min-h-screen flex flex-col items-center justify-center text-black px-4 py-8">
         <h1 className="text-3xl font-bold mb-4">Project Not Found</h1>
         <p className="text-lg">
           The project you are looking for does not exist.
@@ -57,7 +57,10 @@ export default function ProjectDetailsPage() {
       <div className="w-full bg-black aspect-video flex-shrink-0">
         {project.vimeoId ? (
           <iframe
-            src={`https://player.vimeo.com/video/${project.vimeoId}?autoplay=0&loop=0&byline=0&portrait=0&title=0`}
+            // MODIFIED: Conditionally add the vimeoHash parameter
+            src={`https://player.vimeo.com/video/${project.vimeoId}${
+              project.vimeoHash ? `?h=${project.vimeoHash}&` : "?"
+            }autoplay=0&loop=0&byline=0&portrait=0&title=0`}
             width="100%"
             height="100%"
             allow="autoplay; fullscreen;"
@@ -66,7 +69,7 @@ export default function ProjectDetailsPage() {
             title={project.title}
           ></iframe>
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-900 text-gray-400">
+          <div className="w-full h-full flex items-center justify-center text-gray-400">
             <p>Video not available for this project.</p>
           </div>
         )}

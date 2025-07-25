@@ -4,9 +4,10 @@ export type Project = {
   type: "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO";
   thumbnailUrl: string; // Static image URL
   gifUrl: string; // GIF URL for hover effect
-  vimeoId?: string; // Added: Optional Vimeo video ID
-  description?: string; // Added: Optional project description
-  crew?: { role: string; name: string }[]; // Added: Optional array for cast/crew
+  vimeoId?: string; // Optional Vimeo video ID
+  vimeoHash?: string; // Optional Vimeo hash parameter for private videos
+  description?: string; // Optional project description
+  crew?: { role: string; name: string }[]; // Optional array for cast/crew
 };
 
 export const projectsData: Project[] = [
@@ -17,7 +18,8 @@ export const projectsData: Project[] = [
     thumbnailUrl:
       "https://placehold.co/400x225/222222/bbbbbb?text=Doritos+Thumb",
     gifUrl: "https://placehold.co/400x225/222222/bbbbbb/gif?text=Doritos+GIF",
-    vimeoId: "984534888", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984534888", // Replace with actual Vimeo ID
+    vimeoHash: undefined, // Add hash if needed
     description:
       "A thrilling commercial for Doritos that brings a spooky twist to snack time. This project showcases our ability to blend humor with high-production value, creating memorable content that resonates with audiences.",
     crew: [
@@ -34,7 +36,8 @@ export const projectsData: Project[] = [
     thumbnailUrl:
       "https://placehold.co/400x225/333333/cccccc?text=Graywind+Thumb",
     gifUrl: "https://placehold.co/400x225/333333/cccccc/gif?text=Graywind+GIF",
-    vimeoId: "984534889", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "1065705607", // This is your working video ID
+    vimeoHash: "b403cd7610", // Hash from your embed code
     description:
       "An elegant commercial showcasing the innovative features and sleek design of Graywind Blinds. We focused on clean aesthetics and smooth transitions to highlight the product's modern appeal and ease of use.",
     crew: [
@@ -50,7 +53,8 @@ export const projectsData: Project[] = [
     thumbnailUrl:
       "https://placehold.co/400x225/444444/dddddd?text=Nigaam+Thumb",
     gifUrl: "https://placehold.co/400x225/444444/dddddd/gif?text=Nigaam+GIF",
-    vimeoId: "984534890", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984534890", // Replace with actual Vimeo ID
+    vimeoHash: undefined, // Add hash if needed
     description:
       "A luxurious commercial for Nigaam Jewels, emphasizing the exquisite craftsmanship and timeless beauty of their collections. We aimed for a sophisticated visual style to reflect the brand's prestige.",
     crew: [
@@ -66,7 +70,8 @@ export const projectsData: Project[] = [
     thumbnailUrl:
       "https://placehold.co/400x225/555555/eeeeee?text=Chinese+Thumb",
     gifUrl: "https://placehold.co/400x225/555555/eeeeee/gif?text=Chinese+GIF",
-    vimeoId: "984534891", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984534891", // Replace with actual Vimeo ID
+    vimeoHash: undefined, // Add hash if needed
     description:
       "A powerful narrative short film exploring themes of cultural identity and belonging within the Chinese diaspora. The film delves into personal journeys and societal expectations.",
     crew: [
@@ -83,7 +88,8 @@ export const projectsData: Project[] = [
       "https://placehold.co/400x225/666666/ffffff?text=Damiens+Gym+Thumb",
     gifUrl:
       "https://placehold.co/400x225/666666/ffffff/gif?text=Damiens+Gym+GIF",
-    vimeoId: "984534892", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984534892", // Replace with actual Vimeo ID
+    vimeoHash: undefined, // Add hash if needed
     description:
       "A gritty short film set in the world of underground boxing, following a young fighter's struggle for redemption. The raw visuals and intense performances capture the spirit of the gym.",
     crew: [
@@ -98,7 +104,8 @@ export const projectsData: Project[] = [
     type: "NARRATIVE",
     thumbnailUrl: "https://placehold.co/400x225/777777/aaaaaa?text=Bongo+Thumb",
     gifUrl: "https://placehold.co/400x225/777777/aaaaaa/gif?text=Bongo+GIF",
-    vimeoId: "984534893", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "736603033", // Replace with actual Vimeo ID
+    vimeoHash: "b403cd7610", // Add hash if needed
     description:
       'A whimsical and heartwarming narrative about an unexpected friendship formed over a shared love for music. "BONGO" is a testament to the power of connection and rhythm.',
     crew: [
@@ -109,12 +116,13 @@ export const projectsData: Project[] = [
   },
   {
     id: 7,
-    title: "Pass Go - Jordan Webb",
+    title: "Pass Go / Jordan Webb",
     type: "MUSIC VIDEO",
     thumbnailUrl:
       "https://placehold.co/400x225/888888/bbbbbb?text=Pass+Go+Thumb",
     gifUrl: "https://placehold.co/400x225/888888/bbbbbb/gif?text=Pass+Go+GIF",
-    vimeoId: "984534894", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984158469", // Replace with actual Vimeo ID
+    vimeoHash: "b403cd7610", // Add hash if needed
     description:
       'The official music video for Jordan Webb\'s hit "Pass Go," featuring dynamic visuals and captivating choreography. The video captures the vibrant energy of the track.',
     crew: [
@@ -125,12 +133,13 @@ export const projectsData: Project[] = [
   },
   {
     id: 8,
-    title: "Back to Sender - Zyodara ft. Yasmina",
+    title: "Back to Sender / Zyodara ft. Yasmina",
     type: "MUSIC VIDEO",
     thumbnailUrl:
       "https://placehold.co/400x225/999999/cccccc?text=Sender+Thumb",
     gifUrl: "https://placehold.co/400x225/999999/cccccc/gif?text=Sender+GIF",
-    vimeoId: "984534895", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "827845705", // Replace with actual Vimeo ID
+    vimeoHash: "b403cd7610", // Add hash if needed
     description:
       'A visually stunning music video for "Back to Sender," a collaboration between Zyodara and Yasmina. The video uses surreal imagery to convey the song\'s themes.',
     crew: [
@@ -146,7 +155,8 @@ export const projectsData: Project[] = [
     type: "MUSIC VIDEO",
     thumbnailUrl: "https://placehold.co/400x225/AAAAAA/dddddd?text=More+Thumb",
     gifUrl: "https://placehold.co/400x225/AAAAAA/dddddd/gif?text=More+GIF",
-    vimeoId: "984534896", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984534896", // Replace with actual Vimeo ID
+    vimeoHash: undefined, // Add hash if needed
     description:
       'The heartfelt music video for Jordan Webb\'s "More," featuring Lucy Northern. The intimate visuals complement the emotional depth of the song, creating a touching experience.',
     crew: [
@@ -162,7 +172,8 @@ export const projectsData: Project[] = [
     type: "NARRATIVE",
     thumbnailUrl: "https://placehold.co/400x225/BBBBBB/eeeeee?text=Neon+Thumb",
     gifUrl: "https://placehold.co/400x225/BBBBBB/eeeeee/gif?text=Neon+GIF",
-    vimeoId: "984534897", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984534897", // Replace with actual Vimeo ID
+    vimeoHash: undefined, // Add hash if needed
     description:
       "A visually striking narrative short film that plunges into a futuristic city bathed in neon lights. It explores a protagonist's journey through a cybernetic landscape.",
     crew: [
@@ -177,7 +188,8 @@ export const projectsData: Project[] = [
     type: "COMMERCIAL",
     thumbnailUrl: "https://placehold.co/400x225/CCCCCC/bbbbbb?text=Urban+Thumb",
     gifUrl: "https://placehold.co/400x225/CCCCCC/bbbbbb/gif?text=Urban+GIF",
-    vimeoId: "984534898", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984534898", // Replace with actual Vimeo ID
+    vimeoHash: undefined, // Add hash if needed
     description:
       "A dynamic commercial capturing the vibrant energy of city life for a lifestyle brand. The fast-paced edits and modern aesthetics reflect the urban environment.",
     crew: [
@@ -193,7 +205,8 @@ export const projectsData: Project[] = [
     thumbnailUrl:
       "https://placehold.co/400x225/DDDDDD/aaaaaa?text=Echoes+Thumb",
     gifUrl: "https://placehold.co/400x225/DDDDDD/aaaaaa/gif?text=Echoes+GIF",
-    vimeoId: "984534899", // <-- REPLACE with actual Vimeo ID
+    vimeoId: "984534899", // Replace with actual Vimeo ID
+    vimeoHash: undefined, // Add hash if needed
     description:
       "A hauntingly beautiful music video that uses atmospheric visuals to complement the melancholic tones of the song. The narrative unfolds in a mystical, shadowy world.",
     crew: [

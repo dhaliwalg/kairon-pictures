@@ -42,7 +42,7 @@ void main() {
   float normalizedDist = dist / uMouseRadius;
   
   // Use smoothstep for feathered edges and expand the effective area
-  float mouseEffect = smoothstep(1.2, 0.0, normalizedDist) * uMouseActive;
+  float mouseEffect = smoothstep(1.2, 0.0, normalizedDist) * uMouseActive; // Use uMouseActive here
   
   // Reduce the pinching effect in the center by using a softer curve
   float centerSoftening = mix(0.3, 1.0, smoothstep(0.0, 0.4, normalizedDist));
@@ -83,7 +83,8 @@ export default function Iridescence({
 }: IridescenceProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0.5, y: 0.5 });
-  const isMouseActive = useRef(false);
+  const targetMouseActive = useRef(0.0); // Target value for uMouseActive
+  const currentMouseActive = useRef(0.0); // Current animated value
 
   useEffect(() => {
     if (!ctnDom.current) return;
@@ -133,10 +134,24 @@ export default function Iridescence({
     resize();
 
     let animateId: number;
+    let lastTime = 0;
+    const fadeSpeed = 0.05; // Adjust this value for faster/slower fade
 
     function update(t: number) {
       animateId = requestAnimationFrame(update);
+
+      // Calculate delta time for consistent animation speed
+      const deltaTime = t - lastTime;
+      lastTime = t;
+
+      // Smoothly interpolate currentMouseActive towards targetMouseActive
+      currentMouseActive.current += (targetMouseActive.current - currentMouseActive.current) * fadeSpeed * (deltaTime / 16.66); // Divide by ~16.66ms (1000/60) for frame-rate independent easing
+
+      // Clamp the value to ensure it stays between 0 and 1
+      currentMouseActive.current = Math.max(0.0, Math.min(1.0, currentMouseActive.current));
+
       program.uniforms.uTime.value = t * 0.001;
+      program.uniforms.uMouseActive.value = currentMouseActive.current; // Use the animated value
       renderer.render({ scene: mesh });
     }
     animateId = requestAnimationFrame(update);
@@ -150,21 +165,16 @@ export default function Iridescence({
       program.uniforms.uMouse.value[0] = x;
       program.uniforms.uMouse.value[1] = y;
 
-      // Mark mouse as active when moving
-      if (!isMouseActive.current) {
-        isMouseActive.current = true;
-        program.uniforms.uMouseActive.value = 1.0;
-      }
+      // Set target to active
+      targetMouseActive.current = 1.0;
     }
 
     function handleMouseEnter() {
-      isMouseActive.current = true;
-      program.uniforms.uMouseActive.value = 1.0;
+      targetMouseActive.current = 1.0;
     }
 
     function handleMouseLeave() {
-      isMouseActive.current = false;
-      program.uniforms.uMouseActive.value = 0.0;
+      targetMouseActive.current = 0.0;
     }
 
     if (mouseReact) {

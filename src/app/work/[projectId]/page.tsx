@@ -41,7 +41,7 @@ export default function ProjectDetailsPage() {
         </p>
         <button
           onClick={() => router.push("/work")}
-          className="mt-6 bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition-colors duration-200"
+          className="mt-6 bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition-colors duration-200 pointer-events-auto" // Add pointer-events-auto here as well
         >
           Back to Work
         </button>
@@ -57,7 +57,6 @@ export default function ProjectDetailsPage() {
       <div className="w-full bg-black aspect-video flex-shrink-0">
         {project.vimeoId ? (
           <iframe
-            // MODIFIED: Conditionally add the vimeoHash parameter
             src={`https://player.vimeo.com/video/${project.vimeoId}${
               project.vimeoHash ? `?h=${project.vimeoHash}&` : "?"
             }autoplay=0&loop=0&byline=0&portrait=0&title=0`}
@@ -65,7 +64,7 @@ export default function ProjectDetailsPage() {
             height="100%"
             allow="autoplay; fullscreen;"
             allowFullScreen
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover pointer-events-auto" // ONLY ADD THIS LINE
             title={project.title}
           ></iframe>
         ) : (

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { projectsData, Project } from "@/data/projects"; // Assuming Project interface is here
+import { projectsData, Project } from "@/data/projects";
 
 export default function ProjectDetailsPage() {
   const params = useParams();

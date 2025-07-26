@@ -145,10 +145,16 @@ export default function Iridescence({
       lastTime = t;
 
       // Smoothly interpolate currentMouseActive towards targetMouseActive
-      currentMouseActive.current += (targetMouseActive.current - currentMouseActive.current) * fadeSpeed * (deltaTime / 16.66); // Divide by ~16.66ms (1000/60) for frame-rate independent easing
+      currentMouseActive.current +=
+        (targetMouseActive.current - currentMouseActive.current) *
+        fadeSpeed *
+        (deltaTime / 16.66); // Divide by ~16.66ms (1000/60) for frame-rate independent easing
 
       // Clamp the value to ensure it stays between 0 and 1
-      currentMouseActive.current = Math.max(0.0, Math.min(1.0, currentMouseActive.current));
+      currentMouseActive.current = Math.max(
+        0.0,
+        Math.min(1.0, currentMouseActive.current),
+      );
 
       program.uniforms.uTime.value = t * 0.001;
       program.uniforms.uMouseActive.value = currentMouseActive.current; // Use the animated value

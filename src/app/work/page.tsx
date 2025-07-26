@@ -20,8 +20,9 @@ export default function WorkPage() {
     <div className="min-h-screen flex flex-col items-center text-white px-0 py-0">
       <div className="w-full max-w-[1400px] px-8 md:px-16 lg:px-24 pt-32 pb-16 mx-auto">
         {/* Filter Buttons Section - Now with boxed/pill style */}
-        <div className="flex justify-center mb-16 space-x-4 md:space-x-6 font-medium text-lg md:text-xl uppercase pointer-events-auto"> {/* ADDED pointer-events-auto HERE */}
+        <div className="flex justify-center mb-16 space-x-4 md:space-x-6 font-medium text-lg md:text-xl uppercase pointer-events-auto">
           {" "}
+          {/* ADDED pointer-events-auto HERE */}{" "}
           {(
             [
               "ALL",
@@ -56,7 +57,9 @@ export default function WorkPage() {
 
         {/* Message if no projects found for filter */}
         {filteredProjects.length === 0 && (
-          <p className="text-center text-gray-500 mt-12 text-lg pointer-events-auto"> {/* ADDED pointer-events-auto HERE if this text should be selectable/interactable */}
+          <p className="text-center text-gray-500 mt-12 text-lg pointer-events-auto">
+            {" "}
+            {/* ADDED pointer-events-auto HERE if this text should be selectable/interactable */}
             No projects found for this category.
           </p>
         )}

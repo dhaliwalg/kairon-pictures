@@ -15,10 +15,10 @@ const Header = () => {
         <div className="flex justify-start">
           <Link href="/" className="hover:opacity-80 py-2 pointer-events-auto">
             <Image
-              src="/BLACKLOGO.png"
+              src="/BLACKKP.png"
               alt="Home"
-              width={120}
-              height={40}
+              width={30}
+              height={30}
               className="h-auto"
             />
           </Link>

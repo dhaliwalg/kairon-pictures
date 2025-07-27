@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
+import Image from "next/image";
 import { projectsData } from "../data/projects";
 
 export default function HomePage() {
@@ -18,6 +19,9 @@ export default function HomePage() {
   // Add a unique ID system to track media elements
   const mediaIdRef = useRef<number>(0);
   const currentMediaIdRef = useRef<number | null>(null);
+
+  // Limit to first 6 projects
+  const limitedProjects = projectsData.slice(0, 6);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -50,22 +54,18 @@ export default function HomePage() {
       ease: "power2.out",
     });
 
-    // Add ambient blur animation after entrance
-    tl.to(
-      titles,
-      {
-        filter: "blur(2px)",
-        duration: 1.5,
-        stagger: {
-          amount: 2,
-          from: "random",
-        },
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
+    // Simple entrance animation - no motion after
+    tl.to(titles, {
+      opacity: 1,
+      filter: "blur(0px)",
+      scale: 1,
+      duration: 2,
+      stagger: {
+        amount: 3,
+        from: "random",
       },
-      "+=1",
-    );
+      ease: "power2.out",
+    });
 
     return () => {
       gsap.killTweensOf(titles);
@@ -103,7 +103,7 @@ export default function HomePage() {
 
     if (projectId !== null && hoveredElement) {
       // Entering hover state
-      const project = projectsData.find((p) => p.id === projectId);
+      const project = limitedProjects.find((p) => p.id === projectId);
       if (!project) return;
 
       // Generate unique ID for this media request
@@ -131,7 +131,6 @@ export default function HomePage() {
         }
       });
 
-      // Keep hovered title sharp and visible
       gsap.to(hoveredElement, {
         opacity: 1,
         filter: "blur(0px)",
@@ -263,24 +262,14 @@ export default function HomePage() {
         gsap.killTweensOf(logoRef.current);
       }
 
-      // Fade all titles back to normal
+      // Fade all titles back to normal - no motion restart
       allTitles.forEach((title) => {
         gsap.to(title, {
           opacity: 1,
-          filter: "blur(2px)",
+          filter: "blur(0px)",
           scale: 1,
           duration: 0.6,
           ease: "power2.out",
-          onComplete: () => {
-            // Restart ambient animation for this title
-            gsap.to(title, {
-              filter: "blur(2px)",
-              duration: 1.5,
-              ease: "sine.inOut",
-              repeat: -1,
-              yoyo: true,
-            });
-          },
         });
       });
 
@@ -322,7 +311,7 @@ export default function HomePage() {
     };
   }, []);
 
-  // Generate random positions for titles
+  // Generate random positions for titles (only need 6 now)
   const getRandomPosition = (index: number) => {
     const positions = [
       { top: "15%", left: "10%" },
@@ -331,15 +320,9 @@ export default function HomePage() {
       { bottom: "30%", right: "10%" },
       { bottom: "15%", left: "20%" },
       { top: "60%", right: "25%" },
-      { top: "70%", left: "15%" },
-      { bottom: "40%", left: "8%" },
-      { top: "35%", right: "5%" },
-      { bottom: "20%", right: "30%" },
-      { top: "80%", right: "12%" },
-      { bottom: "60%", left: "25%" },
     ];
 
-    return positions[index % positions.length];
+    return positions[index];
   };
 
   return (
@@ -352,8 +335,8 @@ export default function HomePage() {
         )}
       </div>
 
-      {/* Project titles scattered around */}
-      {projectsData.map((project, index) => {
+      {/* Project titles scattered around - now limited to 6 */}
+      {limitedProjects.map((project, index) => {
         const position = getRandomPosition(index);
         return (
           <Link
@@ -380,10 +363,13 @@ export default function HomePage() {
       >
         <div className="text-center">
           <div className="text-6xl md:text-8xl font-bold tracking-wider text-white opacity-90 mix-blend-difference">
-            K
-          </div>
-          <div className="text-6xl md:text-8xl font-bold tracking-wider text-white opacity-90 mix-blend-difference">
-            P
+                        <Image
+                          src="/BLACKLOGO.png"
+                          alt="Home"
+                          width={250}
+                          height={100}
+                          className="h-auto"
+                        />
           </div>
         </div>
       </div>

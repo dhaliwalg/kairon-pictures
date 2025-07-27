@@ -15,6 +15,7 @@ export default function HomePage() {
     null,
   );
   const logoRef = useRef<HTMLDivElement>(null);
+  const ambientTimelinesRef = useRef<gsap.core.Timeline[]>([]);
 
   // Add a unique ID system to track media elements
   const mediaIdRef = useRef<number>(0);
@@ -23,14 +24,75 @@ export default function HomePage() {
   // Limit to first 6 projects
   const limitedProjects = projectsData.slice(0, 6);
 
-  useEffect(() => {
+  // Create ambient movement for titles - organic floating like leaves on water
+  const createAmbientMotion = () => {
     if (!containerRef.current) return;
+
+    const titles = containerRef.current.querySelectorAll(".project-title");
+    
+    // Clear existing ambient timelines
+    ambientTimelinesRef.current.forEach(tl => tl.kill());
+    ambientTimelinesRef.current = [];
+
+    titles.forEach((title) => {
+      // Create continuous floating animation for each title
+      const animateTitle = () => {
+        // Generate random target position within a floating radius
+        const floatRadius = 15 + Math.random() * 25; // 15-40px radius
+        const angle = Math.random() * Math.PI * 2; // Random direction
+        const distance = Math.random() * floatRadius; // Random distance within radius
+        
+        const targetX = Math.cos(angle) * distance;
+        const targetY = Math.sin(angle) * distance;
+        const targetRotation = (Math.random() - 0.5) * 6; // -3 to +3 degrees
+        const targetScale = 0.98 + Math.random() * 0.04; // 0.98 to 1.02
+        
+        // Random duration for each movement
+        const duration = 2 + Math.random() * 4; // 2-6 seconds per movement
+        
+        gsap.to(title, {
+          x: targetX,
+          y: targetY,
+          rotation: targetRotation,
+          scale: targetScale,
+          duration: duration,
+          ease: "sine.inOut",
+          onComplete: () => {
+            // Immediately start next random movement
+            if (ambientTimelinesRef.current.length > 0) { // Check if still active
+              animateTitle();
+            }
+          }
+        });
+      };
+      
+      // Start each title's animation with a random delay
+      const startDelay = Math.random() * 3; // 0-3 second stagger
+      gsap.delayedCall(startDelay, animateTitle);
+      
+      // Keep track of this animation (we'll use the delayedCall for cleanup)
+      ambientTimelinesRef.current.push(gsap.timeline());
+    });
+  };
+
+  useEffect(() => {
+    if (!containerRef.current || !logoRef.current) return;
+
+    // Capture ref values for cleanup
+    const logoElement = logoRef.current;
+    const titles = containerRef.current.querySelectorAll(".project-title");
 
     // Clear refs array
     titlesRef.current = [];
 
+    // Set initial state for logo
+    gsap.set(logoElement, {
+      opacity: 0,
+      filter: "blur(8px)",
+      scale: 0.9,
+    });
+
     // Set initial state for all titles
-    const titles = containerRef.current.querySelectorAll(".project-title");
     titles.forEach((title) => {
       gsap.set(title, {
         opacity: 0,
@@ -39,10 +101,19 @@ export default function HomePage() {
       });
     });
 
-    // Create timeline for staggered entrance
-    const tl = gsap.timeline();
+    // Create master timeline
+    const masterTl = gsap.timeline();
 
-    tl.to(titles, {
+    // First: Animate the logo in
+    masterTl.to(logoElement, {
+      opacity: 0.9,
+      filter: "blur(0px)",
+      scale: 1,
+      duration: 2,
+      ease: "power2.out",
+    })
+    // Then: Wait 1.5 seconds and animate titles in
+    .to(titles, {
       opacity: 1,
       filter: "blur(0px)",
       scale: 1,
@@ -52,23 +123,17 @@ export default function HomePage() {
         from: "random",
       },
       ease: "power2.out",
-    });
-
-    // Simple entrance animation - no motion after
-    tl.to(titles, {
-      opacity: 1,
-      filter: "blur(0px)",
-      scale: 1,
-      duration: 2,
-      stagger: {
-        amount: 3,
-        from: "random",
-      },
-      ease: "power2.out",
-    });
+      onComplete: () => {
+        // Start ambient motion after titles entrance completes
+        createAmbientMotion();
+      }
+    }, "+=1.5"); // 1.5 second delay after logo finishes
 
     return () => {
-      gsap.killTweensOf(titles);
+      gsap.killTweensOf([logoElement, titles]);
+      // Clean up ambient timelines
+      ambientTimelinesRef.current.forEach(tl => tl.kill());
+      ambientTimelinesRef.current = [];
     };
   }, []);
 
@@ -111,6 +176,8 @@ export default function HomePage() {
       currentMediaIdRef.current = mediaId;
 
       // Kill all ambient animations
+      ambientTimelinesRef.current.forEach(tl => tl.kill());
+      ambientTimelinesRef.current = [];
       gsap.killTweensOf(allTitles);
 
       // Kill any existing animations on the logo
@@ -118,7 +185,7 @@ export default function HomePage() {
         gsap.killTweensOf(logoRef.current);
       }
 
-      // Fade out all other titles
+      // Fade out all other titles (keep their current positions)
       allTitles.forEach((title) => {
         if (title !== hoveredElement) {
           gsap.to(title, {
@@ -131,6 +198,7 @@ export default function HomePage() {
         }
       });
 
+      // Enhance the hovered element from its current position
       gsap.to(hoveredElement, {
         opacity: 1,
         filter: "blur(0px)",
@@ -262,7 +330,7 @@ export default function HomePage() {
         gsap.killTweensOf(logoRef.current);
       }
 
-      // Fade all titles back to normal - no motion restart
+      // Fade all titles back to normal and restart ambient motion
       allTitles.forEach((title) => {
         gsap.to(title, {
           opacity: 1,
@@ -270,6 +338,12 @@ export default function HomePage() {
           scale: 1,
           duration: 0.6,
           ease: "power2.out",
+          onComplete: () => {
+            // Restart ambient motion after fade-in completes
+            if (ambientTimelinesRef.current.length === 0) {
+              createAmbientMotion();
+            }
+          },
         });
       });
 
@@ -308,6 +382,9 @@ export default function HomePage() {
       if (currentMediaRef.current) {
         cleanupMedia(currentMediaRef.current);
       }
+      // Clean up ambient timelines
+      ambientTimelinesRef.current.forEach(tl => tl.kill());
+      ambientTimelinesRef.current = [];
     };
   }, []);
 

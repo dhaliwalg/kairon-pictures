@@ -397,9 +397,9 @@ export default function HomePage() {
   // Generate random positions for titles (only need 6 now)
   const getRandomPosition = (index: number) => {
     const positions = [
-      { top: "15%", left: "10%" },
-      { top: "25%", right: "15%" },
-      { top: "40%", left: "5%" },
+      { top: "20%", left: "20%" },
+      { top: "25%", right: "20%" },
+      { top: "40%", left: "12%" },
       { bottom: "30%", right: "10%" },
       { bottom: "15%", left: "20%" },
       { top: "60%", right: "25%" },

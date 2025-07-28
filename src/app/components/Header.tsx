@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Header = () => {
   const pathname = usePathname();
@@ -11,8 +12,9 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-40 bg-transparent text-black pt-4 pb-4 pointer-events-none">
-      <nav className="flex justify-between items-center h-full text-lg md:text-xl lg:text-2xl font-bold pointer-events-none px-8">
-        <div className="flex justify-start">
+      <nav className="flex justify-between items-center h-full text-lg md:text-xl lg:text-2xl font-bold pointer-events-none px-8 w-full">
+        {/* Logo on far left */}
+        <div className="flex-shrink-0">
           <Link href="/" className="hover:opacity-80 py-2 pointer-events-auto">
             <Image
               src="/BLACKKP.png"
@@ -23,7 +25,9 @@ const Header = () => {
             />
           </Link>
         </div>
-        <div className="flex justify-center space-x-16">
+
+        {/* Navigation Links in center space */}
+        <div className="flex space-x-60 flex-1 justify-center">
           <Link
             href="/work"
             className={`hover:text-white py-2 pointer-events-auto ${
@@ -32,6 +36,7 @@ const Header = () => {
           >
             WORK
           </Link>
+          
           <Link
             href="/about"
             className={`hover:text-white py-2 pointer-events-auto ${
@@ -40,6 +45,7 @@ const Header = () => {
           >
             ABOUT
           </Link>
+          
           <Link
             href="/contact"
             className={`hover:text-white py-2 pointer-events-auto ${
@@ -48,6 +54,26 @@ const Header = () => {
           >
             CONTACT
           </Link>
+        </div>
+
+        {/* Social Icons stuck to right corner */}
+        <div className="flex items-center space-x-4 pointer-events-auto flex-shrink-0">
+            <Link
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              <FaInstagram size={24} />
+            </Link>
+            <Link
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              <FaLinkedinIn size={24} />
+            </Link>
         </div>
       </nav>
     </header>

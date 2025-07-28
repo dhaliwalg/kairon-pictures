@@ -59,7 +59,7 @@ const Header = () => {
         {/* Social Icons stuck to right corner */}
         <div className="flex items-center space-x-4 pointer-events-auto flex-shrink-0">
             <Link
-              href="https://instagram.com"
+              href="https://www.instagram.com/kaironpictures/?hl=en"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
@@ -67,7 +67,7 @@ const Header = () => {
               <FaInstagram size={24} />
             </Link>
             <Link
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/kairon-pictures-llc"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"

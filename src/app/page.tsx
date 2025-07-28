@@ -25,13 +25,13 @@ export default function HomePage() {
   const limitedProjects = projectsData.slice(0, 6);
 
   // Create ambient movement for titles - organic floating like leaves on water
-  const createAmbientMotion = () => {
+  const createAmbientMotion = (immediate = false) => {
     if (!containerRef.current) return;
 
     const titles = containerRef.current.querySelectorAll(".project-title");
-    
+
     // Clear existing ambient timelines
-    ambientTimelinesRef.current.forEach(tl => tl.kill());
+    ambientTimelinesRef.current.forEach((tl) => tl.kill());
     ambientTimelinesRef.current = [];
 
     titles.forEach((title) => {
@@ -41,15 +41,15 @@ export default function HomePage() {
         const floatRadius = 15 + Math.random() * 25; // 15-40px radius
         const angle = Math.random() * Math.PI * 2; // Random direction
         const distance = Math.random() * floatRadius; // Random distance within radius
-        
+
         const targetX = Math.cos(angle) * distance;
         const targetY = Math.sin(angle) * distance;
         const targetRotation = (Math.random() - 0.5) * 6; // -3 to +3 degrees
         const targetScale = 0.98 + Math.random() * 0.04; // 0.98 to 1.02
-        
+
         // Random duration for each movement
         const duration = 2 + Math.random() * 4; // 2-6 seconds per movement
-        
+
         gsap.to(title, {
           x: targetX,
           y: targetY,
@@ -59,17 +59,18 @@ export default function HomePage() {
           ease: "sine.inOut",
           onComplete: () => {
             // Immediately start next random movement
-            if (ambientTimelinesRef.current.length > 0) { // Check if still active
+            if (ambientTimelinesRef.current.length > 0) {
+              // Check if still active
               animateTitle();
             }
-          }
+          },
         });
       };
-      
-      // Start each title's animation with a random delay
-      const startDelay = Math.random() * 3; // 0-3 second stagger
+
+      // Start each title's animation with a random delay (unless immediate is true)
+      const startDelay = immediate ? 0 : Math.random() * 3; // 0-3 second stagger
       gsap.delayedCall(startDelay, animateTitle);
-      
+
       // Keep track of this animation (we'll use the delayedCall for cleanup)
       ambientTimelinesRef.current.push(gsap.timeline());
     });
@@ -104,35 +105,40 @@ export default function HomePage() {
     // Create master timeline
     const masterTl = gsap.timeline();
 
-    // First: Animate the logo in
-    masterTl.to(logoElement, {
-      opacity: 0.9,
-      filter: "blur(0px)",
-      scale: 1,
-      duration: 2,
-      ease: "power2.out",
-    })
-    // Then: Wait 1.5 seconds and animate titles in
-    .to(titles, {
-      opacity: 1,
-      filter: "blur(0px)",
-      scale: 1,
-      duration: 2,
-      stagger: {
-        amount: 3,
-        from: "random",
-      },
-      ease: "power2.out",
-      onComplete: () => {
-        // Start ambient motion after titles entrance completes
-        createAmbientMotion();
-      }
-    }, "+=1.5"); // 1.5 second delay after logo finishes
+    // First: Animate the logo in faster
+    masterTl
+      .to(logoElement, {
+        opacity: 0.9,
+        filter: "blur(0px)",
+        scale: 1,
+        duration: 1.5,
+        ease: "power2.out",
+      })
+      // Then: Wait 0.5 seconds and animate titles in faster
+      .to(
+        titles,
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+          scale: 1,
+          duration: 1,
+          stagger: {
+            amount: 1.5,
+            from: "random",
+          },
+          ease: "power2.out",
+        },
+        "+=0.5",
+      ) // 0.5 second delay after logo finishes
+      // Start ambient motion at the SAME TIME as title entrance (no additional delay)
+      .add(() => {
+        createAmbientMotion(true); // Pass true for immediate start
+      }, "-=1"); // Start 1 second before the titles animation completes (at the beginning of title fade-in)
 
     return () => {
       gsap.killTweensOf([logoElement, titles]);
       // Clean up ambient timelines
-      ambientTimelinesRef.current.forEach(tl => tl.kill());
+      ambientTimelinesRef.current.forEach((tl) => tl.kill());
       ambientTimelinesRef.current = [];
     };
   }, []);
@@ -176,7 +182,7 @@ export default function HomePage() {
       currentMediaIdRef.current = mediaId;
 
       // Kill all ambient animations
-      ambientTimelinesRef.current.forEach(tl => tl.kill());
+      ambientTimelinesRef.current.forEach((tl) => tl.kill());
       ambientTimelinesRef.current = [];
       gsap.killTweensOf(allTitles);
 
@@ -383,7 +389,7 @@ export default function HomePage() {
         cleanupMedia(currentMediaRef.current);
       }
       // Clean up ambient timelines
-      ambientTimelinesRef.current.forEach(tl => tl.kill());
+      ambientTimelinesRef.current.forEach((tl) => tl.kill());
       ambientTimelinesRef.current = [];
     };
   }, []);
@@ -440,13 +446,13 @@ export default function HomePage() {
       >
         <div className="text-center">
           <div className="text-6xl md:text-8xl font-bold tracking-wider text-white opacity-90 mix-blend-difference">
-                        <Image
-                          src="/BLACKLOGO.png"
-                          alt="Home"
-                          width={250}
-                          height={100}
-                          className="h-auto"
-                        />
+            <Image
+              src="/BLACKLOGO.png"
+              alt="Home"
+              width={250}
+              height={100}
+              className="h-auto"
+            />
           </div>
         </div>
       </div>

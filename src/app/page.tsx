@@ -123,7 +123,7 @@ export default function HomePage() {
           scale: 1,
           duration: 1,
           stagger: {
-            amount: 1.5,
+            amount: 1,
             from: "random",
           },
           ease: "power2.out",

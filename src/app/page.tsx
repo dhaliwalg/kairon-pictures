@@ -240,19 +240,19 @@ export default function HomePage() {
 
       // Create new media element
       const isVideo =
-        project.gifUrl.includes(".mp4") || project.gifUrl.includes(".webm");
+        project.videoUrl.includes(".mp4") || project.videoUrl.includes(".webm");
       let newMedia: HTMLVideoElement | HTMLImageElement;
 
       if (isVideo) {
         newMedia = document.createElement("video");
-        newMedia.src = project.gifUrl;
+        newMedia.src = project.videoUrl;
         newMedia.muted = true;
         newMedia.loop = true;
         newMedia.playsInline = true;
         newMedia.autoplay = true;
       } else {
         newMedia = document.createElement("img");
-        newMedia.src = project.gifUrl;
+        newMedia.src = project.videoUrl;
       }
 
       newMedia.className = "absolute inset-0 w-full h-full object-cover";

@@ -289,7 +289,7 @@ export const projectsData: Project[] = [
     title: "Damien’s Gym",
     type: "NARRATIVE",
     thumbnailUrl: "/project-thumbnails/damiens-gym.png",
-    videoUrl: "/optimized-project-videos/dammiens-gym.mp4",
+    videoUrl: "/optimized-project-videos/damiens-gym.mp4",
     vimeoId: undefined,
     vimeoHash: undefined,
     imageUrls: ["/stills/damiens-gym/damiens_gym_still_1.jpg"],

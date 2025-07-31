@@ -2,8 +2,8 @@ export type Project = {
   id: number;
   title: string;
   type: "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO";
-  thumbnailUrl: string; // Static image URL
-  gifUrl: string; // GIF URL for hover effect
+  thumbnailUrl: string; // The static image URL for the poster
+  videoUrl: string; // The URL to the video file
   vimeoId?: string; // Optional Vimeo video ID
   vimeoHash?: string; // Optional Vimeo hash parameter for private videos
   description?: string; // Optional project description
@@ -15,10 +15,8 @@ export const projectsData: Project[] = [
     id: 1,
     title: "Doritos Mortis",
     type: "COMMERCIAL",
-    thumbnailUrl:
-      "https://placehold.co/400x225/222222/bbbbbb?text=Doritos+Mortis+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/222222/bbbbbb/gif?text=Doritos+Mortis+GIF",
+    thumbnailUrl: "/project-thumbnails/doritos-mortis.png",
+    videoUrl: "/project-videos/doritos-mortis.mp4",
     vimeoId: "1031808283",
     vimeoHash: "d0897cf7b5",
     crew: [
@@ -42,10 +40,8 @@ export const projectsData: Project[] = [
     id: 2,
     title: "Graywind Blinds",
     type: "COMMERCIAL",
-    thumbnailUrl:
-      "https://placehold.co/400x225/333333/cccccc?text=Graywind+Blinds+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/333333/cccccc/gif?text=Graywind+Blinds+GIF",
+    thumbnailUrl: "/project-thumbnails/graywind-blinds.png",
+    videoUrl: "/project-videos/graywind-blinds.mp4",
     vimeoId: "1065705607",
     vimeoHash: "b403cd7610",
     crew: [
@@ -71,24 +67,20 @@ export const projectsData: Project[] = [
     id: 3,
     title: "Nigaam Jewels",
     type: "COMMERCIAL",
-    thumbnailUrl:
-      "https://placehold.co/400x225/444444/dddddd?text=Nigaam+Jewels+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/444444/dddddd/gif?text=Nigaam+Jewels+GIF",
+    thumbnailUrl: "/project-thumbnails/nigaam-jewels.png",
+    videoUrl: "/project-videos/nigaam-jewels.mp4",
     vimeoId: "1065704065",
     vimeoHash: "72c8bb8562",
-    crew: [], // No explicit crew listed in the raw data for this one, only the Vimeo embed
+    crew: [],
   },
   {
     id: 4,
     title: "Pass Go - Jordan Webb",
     type: "MUSIC VIDEO",
-    thumbnailUrl:
-      "https://placehold.co/400x225/888888/bbbbbb?text=Pass+Go+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/888888/bbbbbb/gif?text=Pass+Go+GIF",
+    thumbnailUrl: "/project-thumbnails/pass-go-jordan-webb.png",
+    videoUrl: "/project-videos/pass-go-jordan-webb.mp4",
     vimeoId: "984158469",
-    vimeoHash: undefined, // Vimeo embed doesn't provide a hash
+    vimeoHash: undefined,
     crew: [
       { role: "Featuring", name: "Joseph Coffey, Elijah McCoy, Michael James Vargas" },
       { role: "Director/Editor", name: "Reece Daniels" },
@@ -113,25 +105,22 @@ export const projectsData: Project[] = [
     id: 5,
     title: "Back to Sender - Zyodara ft. Yasmina",
     type: "MUSIC VIDEO",
-    thumbnailUrl:
-      "https://placehold.co/400x225/999999/cccccc?text=Back+to+Sender+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/999999/cccccc/gif?text=Back+to+Sender+GIF",
+    thumbnailUrl: "/project-thumbnails/back-to-sender-zyodara-ft-yasmina.png",
+    videoUrl: "/project-videos/back-to-sender-zyodara-ft-yasmina.mp4",
     vimeoId: "827845705",
-    vimeoHash: undefined, // Vimeo embed doesn't provide a hash
-    crew: [], // No explicit crew listed in the raw data for this one
+    vimeoHash: undefined,
+    crew: [],
   },
   {
     id: 6,
     title: "More - Jordan Webb ft. Luey Northern",
     type: "MUSIC VIDEO",
-    thumbnailUrl:
-      "https://placehold.co/400x225/AAAAAA/dddddd?text=More+Thumb",
-    gifUrl: "https://placehold.co/400x225/AAAAAA/dddddd/gif?text=More+GIF",
+    thumbnailUrl: "/project-thumbnails/more-jordan-webb-ft-luey-northern.png",
+    videoUrl: "/project-videos/more-jordan-webb-ft-luey-northern.mp4",
     vimeoId: "1065504245",
     vimeoHash: "bfc91a23f5",
     crew: [
-      { role: "Director", name: "Reece Daniels" }, // Inferred from similar projects/structure
+      { role: "Director", name: "Reece Daniels" },
       { role: "Executive Producer", name: "Chaz Hawkins" },
       { role: "Line Producer", name: "Jivensley Alexis" },
       { role: "1st AD", name: "Cassie Kulish" },
@@ -149,10 +138,9 @@ export const projectsData: Project[] = [
     id: 7,
     title: "Freak",
     type: "NARRATIVE",
-    thumbnailUrl:
-      "https://placehold.co/400x225/BBBBBB/eeeeee?text=Freak+Thumb",
-    gifUrl: "https://placehold.co/400x225/BBBBBB/eeeeee/gif?text=Freak+GIF",
-    vimeoId: undefined, // No Vimeo link provided, only stills
+    thumbnailUrl: "/project-thumbnails/freak.png",
+    videoUrl: "/project-videos/freak.mp4",
+    vimeoId: undefined,
     vimeoHash: undefined,
     crew: [
       { role: "Directed", name: "Aashish Joshi & Nick Knezevich" },
@@ -163,9 +151,8 @@ export const projectsData: Project[] = [
     id: 8,
     title: "HIT - Lotionmoney",
     type: "MUSIC VIDEO",
-    thumbnailUrl:
-      "https://placehold.co/400x225/CCCCCC/bbbbbb?text=HIT+Thumb",
-    gifUrl: "https://placehold.co/400x225/CCCCCC/bbbbbb/gif?text=HIT+GIF",
+    thumbnailUrl: "/project-thumbnails/hit-lotionmoney.png",
+    videoUrl: "/project-videos/hit-lotionmoney.mp4",
     vimeoId: "913184069",
     vimeoHash: "419a08b576",
     crew: [
@@ -188,9 +175,8 @@ export const projectsData: Project[] = [
     id: 9,
     title: "Coofandy x JGR",
     type: "COMMERCIAL",
-    thumbnailUrl:
-      "https://placehold.co/400x225/DDDDDD/aaaaaa?text=Coofandy+Thumb",
-    gifUrl: "https://placehold.co/400x225/DDDDDD/aaaaaa/gif?text=Coofandy+GIF",
+    thumbnailUrl: "/project-thumbnails/coofandy-x-jgr.png",
+    videoUrl: "/project-videos/coofandy-x-jgr.mp4",
     vimeoId: "1105948094",
     vimeoHash: "be1234ce86",
     crew: [{ role: "Directed", name: "Keith Leung" }],
@@ -199,11 +185,9 @@ export const projectsData: Project[] = [
     id: 10,
     title: "I, Chinese",
     type: "NARRATIVE",
-    thumbnailUrl:
-      "https://placehold.co/400x225/555555/eeeeee?text=I+Chinese+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/555555/eeeeee/gif?text=I+Chinese+GIF",
-    vimeoId: undefined, // No Vimeo link provided
+    thumbnailUrl: "/project-thumbnails/i-chinese.jpg",
+    videoUrl: "/project-videos/i-chinese.mp4",
+    vimeoId: undefined,
     vimeoHash: undefined,
     crew: [
       { role: "Producers", name: "Menny Son, Nasaidad, Reece Daniels" },
@@ -239,11 +223,9 @@ export const projectsData: Project[] = [
     id: 11,
     title: "Damien’s Gym",
     type: "NARRATIVE",
-    thumbnailUrl:
-      "https://placehold.co/400x225/666666/ffffff?text=Damiens+Gym+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/666666/ffffff/gif?text=Damiens+Gym+GIF",
-    vimeoId: undefined, // No Vimeo link provided, only stills
+    thumbnailUrl: "/project-thumbnails/damiens-gym.png",
+    videoUrl: "/project-videos/damiens-gym.mp4",
+    vimeoId: undefined,
     vimeoHash: undefined,
     crew: [
       { role: "Starring", name: "Brenden Egan, Derek Poole Rob & Terry" },
@@ -283,11 +265,9 @@ export const projectsData: Project[] = [
     id: 12,
     title: "Call me a Liar - Dola",
     type: "MUSIC VIDEO",
-    thumbnailUrl:
-      "https://placehold.co/400x225/AAAAAA/dddddd?text=Call+me+a+Liar+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/AAAAAA/dddddd/gif?text=Call+me+a+Liar+GIF",
-    vimeoId: undefined, // No Vimeo link provided
+    thumbnailUrl: "/project-thumbnails/call-me-a-liar-dola.jpg",
+    videoUrl: "/project-videos/call-me-a-liar-dola.mp4",
+    vimeoId: undefined,
     vimeoHash: undefined,
     crew: [
       { role: "Starring", name: "Jordan Wynn" },
@@ -315,11 +295,9 @@ export const projectsData: Project[] = [
     id: 13,
     title: "Pacer Test - Alana Markel",
     type: "MUSIC VIDEO",
-    thumbnailUrl:
-      "https://placehold.co/400x225/EEEEEE/BBBBBB?text=Pacer+Test+Thumb",
-    gifUrl:
-      "https://placehold.co/400x225/EEEEEE/BBBBBB/gif?text=Pacer+Test+GIF",
-    vimeoId: undefined, // No Vimeo link provided
+    thumbnailUrl: "/project-thumbnails/pacer-test-alana-markel.png",
+    videoUrl: "/project-videos/pacer-test-alana-markel.mp4",
+    vimeoId: undefined,
     vimeoHash: undefined,
     crew: [{ role: "Directed", name: "Eámonn Wrightstone" }],
   },

@@ -1,28 +1,37 @@
 export type Project = {
   id: number;
   title: string;
-  type: "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO" | "REEL"; // Added "REEL" type for clarity
+  type: "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO" | "REEL";
   thumbnailUrl: string; // The static image URL for the poster
   videoUrl: string; // The URL to the video file
   vimeoId?: string; // Optional Vimeo video ID
   vimeoHash?: string; // Optional Vimeo hash parameter for private videos
+  imageUrls?: string[]; // Optional array for image slideshows
   crew?: { role: string; name: string }[]; // Optional array for cast/crew
-  hiddenFromWorkPage?: boolean; // NEW: Added to hide from the work page grid
+  hiddenFromWorkPage?: boolean; // Added to hide from the work page grid
 };
 
 export const projectsData: Project[] = [
   {
-    id: 1, // Original ID, can remain or be re-indexed if preferred
+    id: 1,
     title: "Pacer Test - Alana Markel",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/pacer-test-alana-markel.png",
     videoUrl: "/optimized-project-videos/pacer-test-alana-markel.mp4",
+    imageUrls: [
+      "/stills/pacer/pacer_still_1.png",
+      "/stills/pacer/pacer_still_2.png",
+      "/stills/pacer/pacer_still_3.png",
+      "/stills/pacer/pacer_still_4.png",
+      "/stills/pacer/pacer_still_5.png",
+      "/stills/pacer/pacer_still_6.png",
+    ],
     vimeoId: undefined,
     vimeoHash: undefined,
     crew: [{ role: "Directed", name: "Eámonn Wrightstone" }],
   },
   {
-    id: 2, // Original ID, can remain or be re-indexed if preferred
+    id: 2,
     title: "Coofandy x JGR",
     type: "COMMERCIAL",
     thumbnailUrl: "/project-thumbnails/coofandy-x-jgr.png",
@@ -32,11 +41,20 @@ export const projectsData: Project[] = [
     crew: [{ role: "Directed", name: "Keith Leung" }],
   },
   {
-    id: 3, // Original ID, can remain or be re-indexed if preferred
+    id: 3,
     title: "Call me a Liar - Dola",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/call-me-a-liar-dola.jpg",
     videoUrl: "/optimized-project-videos/call-me-a-liar-dola.mp4",
+    imageUrls: [
+      "/stills/dola/dola_still_1.jpg",
+      "/stills/dola/dola_still_2.jpg",
+      "/stills/dola/dola_still_3.jpg",
+      "/stills/dola/dola_still_4.jpg",
+      "/stills/dola/dola_still_5.jpg",
+      "/stills/dola/dola_still_6.jpg",
+      "/stills/dola/dola_still_7.jpg",
+    ],
     vimeoId: undefined,
     vimeoHash: undefined,
     crew: [
@@ -62,7 +80,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: 4, // Original ID, can remain or be re-indexed if preferred
+    id: 4,
     title: "Doritos Mortis",
     type: "COMMERCIAL",
     thumbnailUrl: "/project-thumbnails/doritos-mortis.png",
@@ -93,7 +111,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: 5, // Original ID, can remain or be re-indexed if preferred
+    id: 5,
     title: "Graywind Blinds",
     type: "COMMERCIAL",
     thumbnailUrl: "/project-thumbnails/graywind-blinds.png",
@@ -120,20 +138,35 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: 6, // Original ID, can remain or be re-indexed if preferred
+    id: 6,
     title: "Freak",
     type: "NARRATIVE",
     thumbnailUrl: "/project-thumbnails/freak.png",
-    videoUrl: "/optimized-project-videos/freak.mp4",
+    videoUrl: "freak",
     vimeoId: undefined,
     vimeoHash: undefined,
+    imageUrls: [
+      "/stills/freak/freak_still_1.png",
+      "/stills/freak/freak_still_2.png",
+      "/stills/freak/freak_still_3.png",
+      "/stills/freak/freak_still_4.png",
+      "/stills/freak/freak_still_5.png",
+      "/stills/freak/freak_still_6.png",
+      "/stills/freak/freak_still_7.png",
+      "/stills/freak/freak_still_8.png",
+      "/stills/freak/freak_still_9.png",
+      "/stills/freak/freak_still_10.png",
+      "/stills/freak/freak_still_11.png",
+      "/stills/freak/freak_still_12.png",
+      "/stills/freak/freak_still_13.png",
+    ],
     crew: [
       { role: "Directed", name: "Aashish Joshi & Nick Knezevich" },
       { role: "Written by", name: "Aashish Joshi & Nick Knezevich" },
     ],
   },
   {
-    id: 7, // Original ID, can remain or be re-indexed if preferred
+    id: 7,
     title: "More - Jordan Webb ft. Luey Northern",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/more-jordan-webb-ft-luey-northern.png",
@@ -156,7 +189,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: 8, // Original ID, can remain or be re-indexed if preferred
+    id: 8,
     title: "Nigaam Jewels",
     type: "COMMERCIAL",
     thumbnailUrl: "/project-thumbnails/nigaam-jewels.png",
@@ -166,13 +199,21 @@ export const projectsData: Project[] = [
     crew: [],
   },
   {
-    id: 9, // Original ID, can remain or be re-indexed if preferred
+    id: 9,
     title: "I, Chinese",
     type: "NARRATIVE",
     thumbnailUrl: "/project-thumbnails/i-chinese.jpg",
-    videoUrl: "/optimized-project-videos/i-chinese.mp4",
+    videoUrl: "chinese",
     vimeoId: undefined,
     vimeoHash: undefined,
+    imageUrls: [
+      "/stills/i-chinese/i_chinese_still_1.jpg",
+      "/stills/i-chinese/i_chinese_still_2.jpg",
+      "/stills/i-chinese/i_chinese_still_3.jpg",
+      "/stills/i-chinese/i_chinese_still_4.jpg",
+      "/stills/i-chinese/i_chinese_still_5.jpg",
+      "/stills/i-chinese/i_chinese_still_6.jpg",
+    ],
     crew: [
       { role: "Producers", name: "Menny Son, Nasaidad, Reece Daniels" },
       {
@@ -213,7 +254,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: 10, // Original ID, can remain or be re-indexed if preferred
+    id: 10,
     title: "Pass Go - Jordan Webb",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/pass-go-jordan-webb.png",
@@ -244,13 +285,14 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: 11, // Original ID, can remain or be re-indexed if preferred
+    id: 11,
     title: "Damien’s Gym",
     type: "NARRATIVE",
     thumbnailUrl: "/project-thumbnails/damiens-gym.png",
-    videoUrl: "/optimized-project-videos/damiens-gym.mp4",
+    videoUrl: "damien",
     vimeoId: undefined,
     vimeoHash: undefined,
+    imageUrls: ["/stills/damiens-gym/damiens_gym_still_1.jpg"],
     crew: [
       { role: "Starring", name: "Brenden Egan, Derek Poole Rob & Terry" },
       { role: "Directed", name: "Reece Daniels" },
@@ -289,7 +331,7 @@ export const projectsData: Project[] = [
     ],
   },
   {
-    id: 12, // Original ID, can remain or be re-indexed if preferred
+    id: 12,
     title: "Back to Sender - Zyodara ft. Yasmina",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/back-to-sender-zyodara-ft-yasmina.png",
@@ -299,7 +341,7 @@ export const projectsData: Project[] = [
     crew: [],
   },
   {
-    id: 13, // Original ID, can remain or be re-indexed if preferred
+    id: 13,
     title: "HIT - Lotionmoney",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/hit-lotionmoney.png",
@@ -324,7 +366,7 @@ export const projectsData: Project[] = [
   },
   {
     id: 14,
-    title: "KAIRON PICTURES",
+    title: "",
     type: "REEL",
     thumbnailUrl: "",
     videoUrl: "",

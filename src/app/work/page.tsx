@@ -5,7 +5,12 @@ import ProjectCard from "@/app/components/ProjectCard";
 import SubtleTextAnimation from "../components/SubtleTextAnimation";
 
 // Define the available filter types
-type ProjectTypeFilter = "ALL" | "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO" | "REEL"; // Added "REEL"
+type ProjectTypeFilter =
+  | "ALL"
+  | "NARRATIVE"
+  | "COMMERCIAL"
+  | "MUSIC VIDEO"
+  | "REEL"; // Added "REEL"
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectTypeFilter>("ALL");
@@ -34,21 +39,22 @@ export default function WorkPage() {
                 "NARRATIVE",
                 "COMMERCIAL",
                 "MUSIC VIDEO",
-              ] as ProjectTypeFilter[] // Keep filter options as they were (excluding REEL)
-            ).map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`py-2 px-6 rounded-full border border-white transition-colors duration-200
+              ] as ProjectTypeFilter[]
+            ) // Keep filter options as they were (excluding REEL)
+              .map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`py-2 px-6 rounded-full border border-white transition-colors duration-200
                   ${
                     activeFilter === filter
                       ? "bg-white text-black"
                       : "bg-black text-white hover:bg-gray-800"
                   }`}
-              >
-                {filter}
-              </button>
-            ))}
+                >
+                  {filter}
+                </button>
+              ))}
           </div>
         </SubtleTextAnimation>
 

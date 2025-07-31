@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Header = () => {
   const pathname = usePathname();
@@ -36,7 +36,7 @@ const Header = () => {
           >
             WORK
           </Link>
-          
+
           <Link
             href="/about"
             className={`hover:text-white py-2 pointer-events-auto ${
@@ -45,7 +45,7 @@ const Header = () => {
           >
             ABOUT
           </Link>
-          
+
           <Link
             href="/contact"
             className={`hover:text-white py-2 pointer-events-auto ${
@@ -58,22 +58,22 @@ const Header = () => {
 
         {/* Social Icons stuck to right corner */}
         <div className="flex items-center space-x-4 pointer-events-auto flex-shrink-0">
-            <Link
-              href="https://www.instagram.com/kaironpictures/?hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              <FaInstagram size={24} />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/company/kairon-pictures-llc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              <FaLinkedinIn size={24} />
-            </Link>
+          <Link
+            href="https://www.instagram.com/kaironpictures/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            <FaInstagram size={24} />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/company/kairon-pictures-llc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white transition-colors"
+          >
+            <FaLinkedinIn size={24} />
+          </Link>
         </div>
       </nav>
     </header>

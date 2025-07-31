@@ -10,7 +10,7 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono", 
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white h-full`}
-        style={{ fontFamily: 'var(--font-haffer-sans)' }}
+        style={{ fontFamily: "var(--font-haffer-sans)" }}
       >
         <div className="fixed inset-0 z-0">
           <Iridescence

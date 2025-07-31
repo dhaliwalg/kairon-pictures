@@ -3,83 +3,93 @@
 @tailwind utilities;
 /* Define your custom properties/CSS variables for the dark theme */
 :root {
---background: #000000; /* Pure black for the background, as seen in PPT */
---foreground: #ffffff; /* Pure white for text, as seen in PPT */
-/* Updated font variables to use Haffer as primary */
---font-geist-sans: "Geist Sans", sans-serif; /* Keep as fallback */
---font-geist-mono: "Geist Mono", monospace; /* Keep as fallback */
---font-haffer-sans: "Haffer", "Geist Sans", sans-serif; /* Haffer as primary */
---font-haffer-mono: "Haffer Mono", "Geist Mono", monospace; /* Haffer Mono as primary */
+  --background: #000000; /* Pure black for the background, as seen in PPT */
+  --foreground: #ffffff; /* Pure white for text, as seen in PPT */
+  /* Updated font variables to use Haffer as primary */
+  --font-geist-sans: "Geist Sans", sans-serif; /* Keep as fallback */
+  --font-geist-mono: "Geist Mono", monospace; /* Keep as fallback */
+  --font-haffer-sans:
+    "Haffer", "Geist Sans", sans-serif; /* Haffer as primary */
+  --font-haffer-mono:
+    "Haffer Mono", "Geist Mono", monospace; /* Haffer Mono as primary */
 }
 /* @theme inline is part of Tailwind v4's new theming system. */
 /* This block maps your CSS variables to Tailwind's internal theme system. */
 @theme {
---color-background: var(--background);
---color-foreground: var(--foreground);
---font-sans: var(--font-geist-sans);
---font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 /* Basic body styles */
 body {
- background: var(--background); /* Use the CSS variable for background */
- color: var(--foreground); /* Use the CSS variable for text color */
- font-family: var(--font-geist-sans);
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
- min-height: 100vh;
- width: 100%;
+  background: var(--background); /* Use the CSS variable for background */
+  color: var(--foreground); /* Use the CSS variable for text color */
+  font-family: var(--font-geist-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  width: 100%;
 }
 html,
 body {
- margin: 0;
- padding: 0;
- height: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 @font-face {
- font-family: 'Haffer';
- src: url('/fonts/Haffer-TRIAL-VF.woff2') format('woff2'),
-url('/fonts/Haffer-TRIAL-VF.woff') format('woff');
- font-weight: 100 900;
- font-style: normal;
- font-display: swap;
+  font-family: "Haffer";
+  src:
+    url("/fonts/Haffer-TRIAL-VF.woff2") format("woff2"),
+    url("/fonts/Haffer-TRIAL-VF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
- font-family: 'Haffer Mono';
- src: url('/fonts/DP_haffer-mono_TRIAL/Haffer-TRIAL-VF.woff2') format('woff2'),
-url('/fonts/DP_haffer-mono_TRIAL/Haffer-TRIAL-VF.woff') format('woff');
- font-weight: 100 900;
- font-style: normal;
- font-display: swap;
+  font-family: "Haffer Mono";
+  src:
+    url("/fonts/DP_haffer-mono_TRIAL/Haffer-TRIAL-VF.woff2") format("woff2"),
+    url("/fonts/DP_haffer-mono_TRIAL/Haffer-TRIAL-VF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
- font-family: 'Haffer Semi Mono';
- src: url('/fonts/DP_haffer-semimono_TRIAL/Haffer-TRIAL-VF.woff2') format('woff2'),
-url('/fonts/DP_haffer-semimono_TRIAL/Haffer-TRIAL-VF.woff') format('woff');
- font-weight: 100 900;
- font-style: normal;
- font-display: swap;
+  font-family: "Haffer Semi Mono";
+  src:
+    url("/fonts/DP_haffer-semimono_TRIAL/Haffer-TRIAL-VF.woff2") format("woff2"),
+    url("/fonts/DP_haffer-semimono_TRIAL/Haffer-TRIAL-VF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
- font-family: 'Haffer XH';
- src: url('/fonts/DP_haffer-xh_TRIAL/Haffer-TRIAL-VF.woff2') format('woff2'),
-url('/fonts/DP_haffer-xh_TRIAL/Haffer-TRIAL-VF.woff') format('woff');
- font-weight: 100 900;
- font-style: normal;
- font-display: swap;
+  font-family: "Haffer XH";
+  src:
+    url("/fonts/DP_haffer-xh_TRIAL/Haffer-TRIAL-VF.woff2") format("woff2"),
+    url("/fonts/DP_haffer-xh_TRIAL/Haffer-TRIAL-VF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
- font-family: 'Haffer XH Mono';
- src: url('/fonts/DP_haffer-xh-mono_TRIAL/Haffer-TRIAL-VF.woff2') format('woff2'),
-url('/fonts/DP_haffer-xh-mono_TRIAL/Haffer-TRIAL-VF.woff') format('woff');
- font-weight: 100 900;
- font-style: normal;
- font-display: swap;
+  font-family: "Haffer XH Mono";
+  src:
+    url("/fonts/DP_haffer-xh-mono_TRIAL/Haffer-TRIAL-VF.woff2") format("woff2"),
+    url("/fonts/DP_haffer-xh-mono_TRIAL/Haffer-TRIAL-VF.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
- font-family: 'Haffer XH Semi Mono';
- src: url('/fonts/DP_haffer-xh-semimono_TRIAL/Haffer-TRIAL-VF.woff2') format('woff2'),
-url('/fonts/DP_haffer-xh-semimono_TRIAL/Haffer-TRIAL-VF.woff') format('woff');
- font-weight: 100 900;
- font-style: normal;
- font-display: swap;
+  font-family: "Haffer XH Semi Mono";
+  src:
+    url("/fonts/DP_haffer-xh-semimono_TRIAL/Haffer-TRIAL-VF.woff2")
+      format("woff2"),
+    url("/fonts/DP_haffer-xh-semimono_TRIAL/Haffer-TRIAL-VF.woff")
+      format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }

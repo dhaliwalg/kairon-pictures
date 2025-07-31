@@ -50,14 +50,13 @@ export default function WorkPage() {
 
         {/* Project Grid - Wrapped with minimal animation */}
 
-          <div className="pointer-events-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-8 justify-items-center">
-            {" "}
-            {filteredProjects.map((project) => (
-              // Ensure ProjectCard's internal Link or wrapping div has pointer-events-auto
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
-
+        <div className="pointer-events-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+          {" "}
+          {filteredProjects.map((project) => (
+            // Ensure ProjectCard's internal Link or wrapping div has pointer-events-auto
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
 
         {/* Message if no projects found for filter */}
         {filteredProjects.length === 0 && (

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Link from "next/link";
 import Image from "next/image";
-import { projectsData } from "../data/projects";
+import { Project, projectsData } from "../data/projects";
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,8 +21,19 @@ export default function HomePage() {
   const mediaIdRef = useRef<number>(0);
   const currentMediaIdRef = useRef<number | null>(null);
 
-  // Limit to first 6 projects
-  const limitedProjects = projectsData.slice(0, 6);
+  const desiredProjectTitles = [
+    "Doritos Mortis",
+    "Graywind Blinds",
+    "More - Jordan Webb ft. Luey Northern",
+    "Nigaam Jewels",
+    "Pass Go - Jordan Webb",
+    "Damien’s Gym",
+  ];
+
+  // Filter projectsData to get only the desired projects
+  const limitedProjects: Project[] = projectsData.filter((project) =>
+    desiredProjectTitles.includes(project.title),
+  );
 
   // Create ambient movement for titles - organic floating like leaves on water
   const createAmbientMotion = (immediate = false) => {

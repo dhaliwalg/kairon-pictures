@@ -5,14 +5,14 @@ import { gsap } from "gsap";
 
 interface SubtleTextAnimationProps {
   children: React.ReactNode;
-  intensity?: 'minimal' | 'subtle' | 'moderate';
+  intensity?: "minimal" | "subtle" | "moderate";
   disabled?: boolean;
 }
 
-export default function SubtleTextAnimation({ 
-  children, 
-  intensity = 'subtle',
-  disabled = false 
+export default function SubtleTextAnimation({
+  children,
+  intensity = "subtle",
+  disabled = false,
 }: SubtleTextAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<gsap.core.Timeline[]>([]);
@@ -30,7 +30,7 @@ export default function SubtleTextAnimation({
         duration: [3.5, 7], // 3.5-7 seconds
       },
       subtle: {
-        translateRange: 3, // 3px movement  
+        translateRange: 3, // 3px movement
         rotationRange: 1.5, // 1.5 degrees
         scaleRange: 0.008, // 0.992-1.008
         duration: [3, 6], // 3-6 seconds
@@ -40,18 +40,18 @@ export default function SubtleTextAnimation({
         rotationRange: 2.5, // 2.5 degrees
         scaleRange: 0.015, // 0.985-1.015
         duration: [2, 5], // 2-5 seconds
-      }
+      },
     };
 
     const settings = config[intensity];
 
     // Find all text elements to animate
     const textElements = containerRef.current.querySelectorAll(
-      'h1, h2, h3, h4, h5, h6, p, span, a, button, .animate-text'
+      "h1, h2, h3, h4, h5, h6, p, span, a, button, .animate-text",
     );
 
     // Clear existing animations
-    animationRef.current.forEach(tl => tl.kill());
+    animationRef.current.forEach((tl) => tl.kill());
     animationRef.current = [];
 
     const createFloatingAnimation = (element: Element) => {
@@ -62,11 +62,13 @@ export default function SubtleTextAnimation({
         // Generate random values within range
         const targetX = (Math.random() - 0.5) * settings.translateRange * 2;
         const targetY = (Math.random() - 0.5) * settings.translateRange * 2;
-        const targetRotation = (Math.random() - 0.5) * settings.rotationRange * 2;
+        const targetRotation =
+          (Math.random() - 0.5) * settings.rotationRange * 2;
         const targetScale = 1 + (Math.random() - 0.5) * settings.scaleRange * 2;
 
         // Random duration within range
-        const duration = settings.duration[0] + 
+        const duration =
+          settings.duration[0] +
           Math.random() * (settings.duration[1] - settings.duration[0]);
 
         gsap.to(element, {
@@ -88,7 +90,7 @@ export default function SubtleTextAnimation({
       // Start with random delay to avoid synchronization
       const startDelay = Math.random() * 2;
       gsap.delayedCall(startDelay, animateElement);
-      
+
       // Keep track for cleanup
       animationRef.current.push(gsap.timeline());
     };
@@ -99,7 +101,7 @@ export default function SubtleTextAnimation({
     // Cleanup function
     return () => {
       gsap.killTweensOf(textElements);
-      animationRef.current.forEach(tl => tl.kill());
+      animationRef.current.forEach((tl) => tl.kill());
       animationRef.current = [];
     };
   }, [intensity, disabled]);
@@ -110,10 +112,10 @@ export default function SubtleTextAnimation({
     // Kill all current animations
     if (containerRef.current) {
       const textElements = containerRef.current.querySelectorAll(
-        'h1, h2, h3, h4, h5, h6, p, span, a, button, .animate-text'
+        "h1, h2, h3, h4, h5, h6, p, span, a, button, .animate-text",
       );
       gsap.killTweensOf(textElements);
-      animationRef.current.forEach(tl => tl.kill());
+      animationRef.current.forEach((tl) => tl.kill());
       animationRef.current = [];
     }
   };
@@ -124,9 +126,9 @@ export default function SubtleTextAnimation({
     setTimeout(() => {
       if (!isHoveredRef.current && containerRef.current) {
         const textElements = containerRef.current.querySelectorAll(
-          'h1, h2, h3, h4, h5, h6, p, span, a, button, .animate-text'
+          "h1, h2, h3, h4, h5, h6, p, span, a, button, .animate-text",
         );
-        
+
         // Get current settings
         const config = {
           minimal: {
@@ -146,11 +148,11 @@ export default function SubtleTextAnimation({
             rotationRange: 2.5,
             scaleRange: 0.015,
             duration: [2, 5],
-          }
+          },
         };
-        
+
         const settings = config[intensity];
-        
+
         // Restart animations
         textElements.forEach((element) => {
           const animateElement = () => {
@@ -158,9 +160,13 @@ export default function SubtleTextAnimation({
 
             const targetX = (Math.random() - 0.5) * settings.translateRange * 2;
             const targetY = (Math.random() - 0.5) * settings.translateRange * 2;
-            const targetRotation = (Math.random() - 0.5) * settings.rotationRange * 2;
-            const targetScale = 1 + (Math.random() - 0.5) * settings.scaleRange * 2;
-            const duration = settings.duration[0] + Math.random() * (settings.duration[1] - settings.duration[0]);
+            const targetRotation =
+              (Math.random() - 0.5) * settings.rotationRange * 2;
+            const targetScale =
+              1 + (Math.random() - 0.5) * settings.scaleRange * 2;
+            const duration =
+              settings.duration[0] +
+              Math.random() * (settings.duration[1] - settings.duration[0]);
 
             gsap.to(element, {
               x: targetX,
@@ -190,8 +196,8 @@ export default function SubtleTextAnimation({
   }
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="w-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

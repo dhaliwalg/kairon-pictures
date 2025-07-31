@@ -114,12 +114,12 @@ export default function ContactPage() {
             <form ref={form} onSubmit={sendEmail} className="space-y-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="group">
-                    <label
-                      htmlFor="first_name"
-                      className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
-                    >
-                      First Name
-                    </label>
+                  <label
+                    htmlFor="first_name"
+                    className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
+                  >
+                    First Name
+                  </label>
                   <input
                     type="text"
                     id="first_name"
@@ -131,12 +131,12 @@ export default function ContactPage() {
                 </div>
 
                 <div className="group">
-                    <label
-                      htmlFor="last_name"
-                      className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
-                    >
-                      Last Name
-                    </label>
+                  <label
+                    htmlFor="last_name"
+                    className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
+                  >
+                    Last Name
+                  </label>
                   <input
                     type="text"
                     id="last_name"
@@ -149,12 +149,12 @@ export default function ContactPage() {
               </div>
 
               <div className="group">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
-                  >
-                    Email Address
-                  </label>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
+                >
+                  Email Address
+                </label>
                 <input
                   type="email"
                   id="email"
@@ -166,12 +166,12 @@ export default function ContactPage() {
               </div>
 
               <div className="group">
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
-                  >
-                    Message
-                  </label>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
+                >
+                  Message
+                </label>
                 <textarea
                   id="message"
                   name="message"

@@ -10,7 +10,7 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-geist-mono", 
   subsets: ["latin"],
 });
 
@@ -28,7 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-black h-full`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-white h-full`}
+        style={{ fontFamily: 'var(--font-haffer-sans)' }}
       >
         <div className="fixed inset-0 z-0">
           <Iridescence
@@ -40,9 +41,6 @@ export default function RootLayout({
             mouseStrength={0.25}
           />
         </div>
-        {/* This div contains ALL foreground UI (Header, main content). */}
-        {/* It must have pointer-events-none to allow events to pass through to Iridescence. */}
-        {/* Then, re-enable pointer-events for specific interactive elements within it. */}
         <div className="relative z-10 min-h-screen flex flex-col pointer-events-none">
           <Header />
           <main className="flex-grow">{children}</main>

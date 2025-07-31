@@ -142,7 +142,7 @@ export const projectsData: Project[] = [
     title: "Freak",
     type: "NARRATIVE",
     thumbnailUrl: "/project-thumbnails/freak.png",
-    videoUrl: "freak",
+    videoUrl: "/optimized-project-videos/freak.mp4",
     vimeoId: undefined,
     vimeoHash: undefined,
     imageUrls: [
@@ -203,7 +203,7 @@ export const projectsData: Project[] = [
     title: "I, Chinese",
     type: "NARRATIVE",
     thumbnailUrl: "/project-thumbnails/i-chinese.jpg",
-    videoUrl: "chinese",
+    videoUrl: "/optimized-project-videos/i-chinese.mp4",
     vimeoId: undefined,
     vimeoHash: undefined,
     imageUrls: [
@@ -289,7 +289,7 @@ export const projectsData: Project[] = [
     title: "Damien’s Gym",
     type: "NARRATIVE",
     thumbnailUrl: "/project-thumbnails/damiens-gym.png",
-    videoUrl: "damien",
+    videoUrl: "/optimized-project-videos/dammiens-gym.mp4",
     vimeoId: undefined,
     vimeoHash: undefined,
     imageUrls: ["/stills/damiens-gym/damiens_gym_still_1.jpg"],

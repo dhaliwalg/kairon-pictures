@@ -455,16 +455,18 @@ export default function HomePage() {
         ref={logoRef}
         className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
       >
-        <div className="text-center">
-          <div className="text-6xl md:text-8xl font-bold tracking-wider text-white opacity-90 mix-blend-difference">
-            <Image
-              src="/BLACKLOGO.png"
-              alt="Home"
-              width={250}
-              height={100}
-              className="h-auto"
-            />
-          </div>
+       <div className="text-center">
+          <Link href="/work/14" className="pointer-events-auto">
+            <div className="text-6xl md:text-8xl font-bold tracking-wider text-white opacity-90 mix-blend-difference">
+              <Image
+                src="/BLACKLOGO.png"
+                alt="Home"
+                width={250}
+                height={100}
+                className="h-auto"
+              />
+            </div>
+          </Link>
         </div>
       </div>
     </div>

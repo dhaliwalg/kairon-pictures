@@ -1,20 +1,24 @@
 "use client";
 import React, { useState } from "react";
 import { projectsData } from "@/data/projects";
-import ProjectCard from "@/app/components/ProjectCard"; // Make sure ProjectCard itself handles pointer-events
+import ProjectCard from "@/app/components/ProjectCard";
 import SubtleTextAnimation from "../components/SubtleTextAnimation";
 
 // Define the available filter types
-type ProjectTypeFilter = "ALL" | "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO";
+type ProjectTypeFilter = "ALL" | "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO" | "REEL"; // Added "REEL"
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectTypeFilter>("ALL");
 
-  // Filter projects based on the activeFilter state
-  const filteredProjects =
-    activeFilter === "ALL"
-      ? projectsData
-      : projectsData.filter((project) => project.type === activeFilter);
+  // Filter projects based on the activeFilter state AND hide projects marked as hiddenFromWorkPage
+  const filteredProjects = projectsData.filter((project) => {
+    // Exclude projects where hiddenFromWorkPage is true
+    if (project.hiddenFromWorkPage) {
+      return false;
+    }
+    // Apply existing filter logic
+    return activeFilter === "ALL" || project.type === activeFilter;
+  });
 
   return (
     <div className="min-h-screen flex flex-col items-center text-white px-0 py-0">
@@ -30,7 +34,7 @@ export default function WorkPage() {
                 "NARRATIVE",
                 "COMMERCIAL",
                 "MUSIC VIDEO",
-              ] as ProjectTypeFilter[]
+              ] as ProjectTypeFilter[] // Keep filter options as they were (excluding REEL)
             ).map((filter) => (
               <button
                 key={filter}

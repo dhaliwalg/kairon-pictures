@@ -1,13 +1,13 @@
 export type Project = {
   id: number;
   title: string;
-  type: "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO";
+  type: "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO" | "REEL"; // Added "REEL" type for clarity
   thumbnailUrl: string; // The static image URL for the poster
   videoUrl: string; // The URL to the video file
   vimeoId?: string; // Optional Vimeo video ID
   vimeoHash?: string; // Optional Vimeo hash parameter for private videos
-  description?: string; // Optional project description
   crew?: { role: string; name: string }[]; // Optional array for cast/crew
+  hiddenFromWorkPage?: boolean; // NEW: Added to hide from the work page grid
 };
 
 export const projectsData: Project[] = [
@@ -321,5 +321,16 @@ export const projectsData: Project[] = [
       { role: "Production Designer", name: "Menny Son" },
       { role: "Production Assistants", name: "Lucas Sun" },
     ],
+  },
+  {
+    id: 14,
+    title: "KAIRON PICTURES",
+    type: "REEL",
+    thumbnailUrl: "",
+    videoUrl: "",
+    vimeoId: "1064532850",
+    vimeoHash: "af5779abde",
+    crew: [],
+    hiddenFromWorkPage: true,
   },
 ];

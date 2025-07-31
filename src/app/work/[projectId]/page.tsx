@@ -41,7 +41,7 @@ export default function ProjectDetailsPage() {
         </p>
         <button
           onClick={() => router.push("/work")}
-          className="mt-6 bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition-colors duration-200 pointer-events-auto" // Add pointer-events-auto here as well
+          className="mt-6 bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition-colors duration-200 pointer-events-auto"
         >
           Back to Work
         </button>
@@ -64,7 +64,7 @@ export default function ProjectDetailsPage() {
             height="100%"
             allow="autoplay; fullscreen;"
             allowFullScreen
-            className="w-full h-full object-cover pointer-events-auto" // ONLY ADD THIS LINE
+            className="w-full h-full object-cover pointer-events-auto"
             title={project.title}
           ></iframe>
         ) : (
@@ -74,7 +74,7 @@ export default function ProjectDetailsPage() {
         )}
       </div>
 
-      {/* Content Section (Title, Company, Crew) - Overlays the global InteractiveLiquidBackground */}
+      {/* Content Section (Title, Company, Crew) */}
       <div className="flex-grow w-full px-4 md:px-8 lg:px-16 xl:px-20 py-12">
         {/* Project Title & Company */}
         <div className="mb-10 mt-0">
@@ -91,13 +91,17 @@ export default function ProjectDetailsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-3 max-w-4xl w-full pb-16">
           {project.crew && project.crew.length > 0 ? (
             project.crew.map((member, index) => (
-              <div key={index} className="flex items-baseline space-x-4">
-                <p className="text-xs sm:text-sm font-bold uppercase text-gray-600 min-w-[120px]">
-                  {member.role}
+              <div key={index} className="flex flex-col">
+                {/* Role title - always on its own line */}
+                <p className="text-xs sm:text-sm font-bold uppercase text-gray-600 mb-1">
+                  {member.role}:
                 </p>
-                <p className="text-base sm:text-lg font-normal text-black">
-                  {member.name}
-                </p>
+                {/* Individual names, each on its own indented line */}
+                {member.name.split(',').map((name, nameIndex) => (
+                  <p key={nameIndex} className="text-base sm:text-lg font-normal text-black ml-4">
+                    {name.trim()}
+                  </p>
+                ))}
               </div>
             ))
           ) : (

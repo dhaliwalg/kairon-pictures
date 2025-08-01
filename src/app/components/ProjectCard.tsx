@@ -52,7 +52,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         alt={`${project.title} thumbnail`}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        onLoadingComplete={handleImageLoadingComplete}
+        onLoad={handleImageLoadingComplete}
         // Image fades in once loaded, and fades out when video plays (on hover)
         className={`object-cover transition-opacity duration-300 ${
           thumbnailLoaded ? "opacity-100" : "opacity-0"

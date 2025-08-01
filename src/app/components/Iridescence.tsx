@@ -1,6 +1,6 @@
 "use client";
 import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const vertexShader = `
 attribute vec2 uv;
@@ -85,13 +85,15 @@ export default function Iridescence({
   const mousePos = useRef({ x: 0.5, y: 0.5 });
   const targetMouseActive = useRef(0.0); // Target value for uMouseActive
   const currentMouseActive = useRef(0.0); // Current animated value
+  const [isReady, setIsReady] = useState(false); // New state to control visibility
 
   useEffect(() => {
     if (!ctnDom.current) return;
     const ctn = ctnDom.current;
+
     const renderer = new Renderer();
     const gl = renderer.gl;
-    gl.clearColor(1, 1, 1, 1);
+    gl.clearColor(0, 0, 0, 1); // <--- CHANGED: Set clear color to black (0,0,0,1)
 
     const program: Program = new Program(gl, {
       vertex: vertexShader,
@@ -159,6 +161,11 @@ export default function Iridescence({
       program.uniforms.uTime.value = t * 0.001;
       program.uniforms.uMouseActive.value = currentMouseActive.current; // Use the animated value
       renderer.render({ scene: mesh });
+
+      // After the first render, set isReady to true to trigger fade-in
+      if (!isReady) {
+        setIsReady(true);
+      }
     }
     animateId = requestAnimationFrame(update);
     ctn.appendChild(gl.canvas);
@@ -197,10 +204,22 @@ export default function Iridescence({
         ctn.removeEventListener("mouseenter", handleMouseEnter);
         ctn.removeEventListener("mouseleave", handleMouseLeave);
       }
-      ctn.removeChild(gl.canvas);
+      // Safely remove canvas only if it's still a child
+      if (ctn.contains(gl.canvas)) {
+        ctn.removeChild(gl.canvas);
+      }
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [color, speed, amplitude, mouseReact, mouseRadius, mouseStrength]);
+  }, [color, speed, amplitude, mouseReact, mouseRadius, mouseStrength, isReady]); // <--- ADDED isReady to dependencies
 
-  return <div ref={ctnDom} className="w-full h-full" {...rest} />;
+  return (
+    <div
+      ref={ctnDom}
+      // <--- ADDED transition and conditional opacity classes
+      className={`w-full h-full transition-opacity duration-1000 ease-in ${
+        isReady ? "opacity-100" : "opacity-0"
+      }`}
+      {...rest}
+    />
+  );
 }

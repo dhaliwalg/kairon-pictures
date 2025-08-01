@@ -114,18 +114,18 @@ export default function HomePage() {
     });
 
     // Create master timeline
-    const masterTl = gsap.timeline();
+    const masterTl = gsap.timeline({ delay: .75 });
 
-    // First: Animate the logo in faster
+    // First: Animate the logo in
     masterTl
       .to(logoElement, {
         opacity: 0.9,
         filter: "blur(0px)",
         scale: 1,
-        duration: 2,
+        duration: 1.75, // Adjusted logo duration for a slightly longer fade
         ease: "power2.out",
       })
-      // Then: Wait 0.5 seconds and animate titles in faster
+      // Then: Wait 0.5 seconds and animate titles
       .to(
         titles,
         {

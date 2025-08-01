@@ -21,6 +21,55 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+/* Hide scrollbar everywhere while maintaining scroll functionality */
+html {
+  /* Modern browsers - hide scrollbar but keep functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  /* Reserve space for scrollbar to prevent layout shifts */
+  scrollbar-gutter: stable; /* Modern browsers */
+}
+
+/* WebKit browsers (Chrome, Safari, newer Edge) */
+html::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+html::-webkit-scrollbar-track {
+  display: none;
+}
+
+/* Apply to body as well for extra coverage */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  background: transparent;
+}
+
+/* Hide scrollbars on all elements but maintain scroll functionality */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  background: transparent;
+}
+
 /* Basic body styles */
 body {
   background: var(--background); /* Use the CSS variable for background */

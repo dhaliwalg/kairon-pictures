@@ -122,7 +122,7 @@ export default function HomePage() {
         opacity: 0.9,
         filter: "blur(0px)",
         scale: 1,
-        duration: 1.5,
+        duration: 2,
         ease: "power2.out",
       })
       // Then: Wait 0.5 seconds and animate titles in faster

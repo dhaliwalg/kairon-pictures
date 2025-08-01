@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
-import Iridescence from "./components/Iridescence";
+import dynamic from 'next/dynamic'; // Make sure this is imported
+
+const DynamicIridescence = dynamic(() => import('./components/Iridescence'), {
+  ssr: false, // This is essential
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,12 +18,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "Kairon Pictures",
-  description:
-    "Creative production company specializing in narrative, commercial, fashion, and music video productions.",
-};
 
 export default function RootLayout({
   children,
@@ -32,7 +31,7 @@ export default function RootLayout({
         style={{ fontFamily: "var(--font-haffer-sans)" }}
       >
         <div className="fixed inset-0 z-0">
-          <Iridescence
+          <DynamicIridescence
             color={[0.8, 0.8, 0.8]}
             speed={0.8}
             amplitude={0.8}

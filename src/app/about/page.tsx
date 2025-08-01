@@ -39,34 +39,49 @@ export default function AboutPage() {
 
         {/* Partners section - no animation on logos */}
         <div className="mb-12">
-          <div className="flex items-center justify-center gap-4 md:gap-12 lg:gap-16 mb-4 overflow-x-auto">
+          {/* Optimized: flex-wrap to allow logos to wrap, justify-center for alignment */}
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-6 md:gap-x-12 lg:gap-x-16 mb-4">
             <Image
               src="/sony.png"
               alt="Sony"
               width={250}
               height={80}
-              className="h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
             />
             <Image
               src="/tribeca.png"
               alt="Tribeca Festival"
               width={250}
               height={80}
-              className="h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
             />
             <Image
               src="/dga.png"
               alt="DGA"
               width={250}
               height={80}
-              className="h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
             />
             <Image
               src="/nascar.png"
               alt="NASCAR"
               width={250}
               height={80}
-              className="h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
+            />
+            <Image
+              src="/berlin.png"
+              alt="BERLIN"
+              width={250}
+              height={80}
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
+            />
+            <Image
+              src="/shortlist.png"
+              alt="Shortlist"
+              width={250}
+              height={80}
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain flex-shrink-0"
             />
           </div>
         </div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import SubtleTextAnimation from "../components/SubtleTextAnimation";
 
 export const metadata = {
-  title: "Kairon Pictures - About Us",
+  title: "About Us",
   description: "Learn about Kairon Pictures, our mission, and our team.",
 };
 

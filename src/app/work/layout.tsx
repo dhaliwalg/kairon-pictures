@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Work",
+  title: "WORK - Kairon Pictures",
   description:
     "Explore our narrative, commercial, and music video productions.",
 };

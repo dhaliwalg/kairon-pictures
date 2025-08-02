@@ -15,8 +15,7 @@ export default function SubtleTextAnimation({
   disabled = false,
 }: SubtleTextAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<gsap.core.Timeline[]>([]);
-  const isHoveredRef = useRef<boolean>(false);
+  const animationTimelinesRef = useRef<gsap.core.Timeline[]>([]); // Renamed for clarity
 
   useEffect(() => {
     if (!containerRef.current || disabled) return;
@@ -51,14 +50,11 @@ export default function SubtleTextAnimation({
     );
 
     // Clear existing animations
-    animationRef.current.forEach((tl) => tl.kill());
-    animationRef.current = [];
+    animationTimelinesRef.current.forEach((tl) => tl.kill());
+    animationTimelinesRef.current = [];
 
     const createFloatingAnimation = (element: Element) => {
       const animateElement = () => {
-        // Check if still should be animating (not hovered)
-        if (isHoveredRef.current) return;
-
         // Generate random values within range
         const targetX = (Math.random() - 0.5) * settings.translateRange * 2;
         const targetY = (Math.random() - 0.5) * settings.translateRange * 2;
@@ -79,10 +75,8 @@ export default function SubtleTextAnimation({
           duration: duration,
           ease: "sine.inOut",
           onComplete: () => {
-            // Continue animation if still active and not hovered
-            if (animationRef.current.length > 0 && !isHoveredRef.current) {
-              animateElement();
-            }
+            // Continue animation indefinitely
+            animateElement();
           },
         });
       };
@@ -91,8 +85,8 @@ export default function SubtleTextAnimation({
       const startDelay = Math.random() * 2;
       gsap.delayedCall(startDelay, animateElement);
 
-      // Keep track for cleanup
-      animationRef.current.push(gsap.timeline());
+      // We still push a dummy timeline for consistency in cleanup, though not strictly needed here for individual tweens
+      animationTimelinesRef.current.push(gsap.timeline());
     };
 
     // Apply animation to each text element
@@ -101,107 +95,17 @@ export default function SubtleTextAnimation({
     // Cleanup function
     return () => {
       gsap.killTweensOf(textElements);
-      animationRef.current.forEach((tl) => tl.kill());
-      animationRef.current = [];
+      animationTimelinesRef.current.forEach((tl) => tl.kill());
+      animationTimelinesRef.current = [];
     };
   }, [intensity, disabled]);
-
-  // Handle hover state changes
-  const handleMouseEnter = () => {
-    isHoveredRef.current = true;
-    // Kill all current animations
-    if (containerRef.current) {
-      const textElements = containerRef.current.querySelectorAll(
-        "h1, h2, h3, h4, h5, h6, p, span, a, button, .animate-text",
-      );
-      gsap.killTweensOf(textElements);
-      animationRef.current.forEach((tl) => tl.kill());
-      animationRef.current = [];
-    }
-  };
-
-  const handleMouseLeave = () => {
-    isHoveredRef.current = false;
-    // Restart animations after a short delay
-    setTimeout(() => {
-      if (!isHoveredRef.current && containerRef.current) {
-        const textElements = containerRef.current.querySelectorAll(
-          "h1, h2, h3, h4, h5, h6, p, span, a, button, .animate-text",
-        );
-
-        // Get current settings
-        const config = {
-          minimal: {
-            translateRange: 2.2,
-            rotationRange: 1.2,
-            scaleRange: 0.006,
-            duration: [3.5, 7],
-          },
-          subtle: {
-            translateRange: 3,
-            rotationRange: 1.5,
-            scaleRange: 0.008,
-            duration: [3, 6],
-          },
-          moderate: {
-            translateRange: 4.5,
-            rotationRange: 2.5,
-            scaleRange: 0.015,
-            duration: [2, 5],
-          },
-        };
-
-        const settings = config[intensity];
-
-        // Restart animations
-        textElements.forEach((element) => {
-          const animateElement = () => {
-            if (isHoveredRef.current) return;
-
-            const targetX = (Math.random() - 0.5) * settings.translateRange * 2;
-            const targetY = (Math.random() - 0.5) * settings.translateRange * 2;
-            const targetRotation =
-              (Math.random() - 0.5) * settings.rotationRange * 2;
-            const targetScale =
-              1 + (Math.random() - 0.5) * settings.scaleRange * 2;
-            const duration =
-              settings.duration[0] +
-              Math.random() * (settings.duration[1] - settings.duration[0]);
-
-            gsap.to(element, {
-              x: targetX,
-              y: targetY,
-              rotation: targetRotation,
-              scale: targetScale,
-              duration: duration,
-              ease: "sine.inOut",
-              onComplete: () => {
-                if (animationRef.current.length > 0 && !isHoveredRef.current) {
-                  animateElement();
-                }
-              },
-            });
-          };
-
-          const startDelay = Math.random() * 2;
-          gsap.delayedCall(startDelay, animateElement);
-          animationRef.current.push(gsap.timeline());
-        });
-      }
-    }, 100);
-  };
 
   if (disabled) {
     return <>{children}</>;
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div ref={containerRef} className="w-full">
       {children}
     </div>
   );

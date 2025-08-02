@@ -74,7 +74,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       />
 
       {/* Title and Type Overlay */}
-      <div className="absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black/80 to-transparent">
+      <div className="absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black/50 to-transparent">
         <div className="text-white">
           <h3 className="text-lg font-bold truncate">{project.title}</h3>
           <p className="text-sm text-gray-300">{project.type}</p>

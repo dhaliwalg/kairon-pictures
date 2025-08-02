@@ -114,7 +114,7 @@ export default function HomePage() {
     });
 
     // Create master timeline
-    const masterTl = gsap.timeline({ delay: .75 });
+    const masterTl = gsap.timeline({ delay: 0.75 });
 
     // First: Animate the logo in
     masterTl

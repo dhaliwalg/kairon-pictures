@@ -210,7 +210,15 @@ export default function Iridescence({
       }
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [color, speed, amplitude, mouseReact, mouseRadius, mouseStrength, isReady]); // <--- ADDED isReady to dependencies
+  }, [
+    color,
+    speed,
+    amplitude,
+    mouseReact,
+    mouseRadius,
+    mouseStrength,
+    isReady,
+  ]); // <--- ADDED isReady to dependencies
 
   return (
     <div

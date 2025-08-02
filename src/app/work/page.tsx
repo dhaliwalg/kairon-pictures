@@ -27,7 +27,8 @@ export default function WorkPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center text-white px-0 py-0">
-      <div className="w-full max-w-[1400px] px-8 md:px-16 lg:px-24 pt-32 pb-16 mx-auto">
+      {/* Changed max-w-[1400px] to max-w-[1920px] or even larger */}
+      <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-24 pt-32 pb-16 mx-auto">
         {/* Filter Buttons Section - Now with boxed/pill style */}
         <SubtleTextAnimation intensity="subtle">
           <div className="flex justify-center mb-16 space-x-4 md:space-x-6 font-medium text-lg md:text-xl uppercase pointer-events-auto">

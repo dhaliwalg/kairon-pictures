@@ -22,6 +22,7 @@ export default function AboutPage() {
             from: "start",
             y: 40,
             selector: ".description-paragraph",
+            setInitialStyles: false, // CSS handles initial styles
           }}
         >
           <div className="description-paragraph">
@@ -60,6 +61,7 @@ export default function AboutPage() {
             y: 30,
             scale: 0.9,
             selector: ".partner-logo",
+            setInitialStyles: false, // CSS handles initial styles
           }}
         >
           {/* Mobile: 2x3 grid, Desktop: single row */}
@@ -129,6 +131,7 @@ export default function AboutPage() {
             duration: 0.8,
             y: 30,
             selector: ".cta-text",
+            setInitialStyles: false, // CSS handles initial styles
           }}
         >
           <div className="cta-text">

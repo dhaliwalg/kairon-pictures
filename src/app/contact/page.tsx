@@ -60,6 +60,7 @@ export default function ContactPage() {
                 from: "start",
                 y: 40,
                 selector: ".contact-info-item",
+                setInitialStyles: false, // CSS handles initial styles
               }}
             >
               <div className="contact-info-item">
@@ -102,6 +103,7 @@ export default function ContactPage() {
                 options={{
                   delay: 0.1,
                   selector: ".status-message",
+                  setInitialStyles: false, // CSS handles initial styles
                 }}
               >
                 <div className="status-message">
@@ -121,6 +123,7 @@ export default function ContactPage() {
                 options={{
                   delay: 0.1,
                   selector: ".status-message",
+                  setInitialStyles: false, // CSS handles initial styles
                 }}
               >
                 <div className="status-message">
@@ -143,6 +146,7 @@ export default function ContactPage() {
                 from: "start",
                 y: 30,
                 selector: ".form-field",
+                setInitialStyles: false, // CSS handles initial styles
               }}
             >
               <form

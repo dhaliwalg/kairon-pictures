@@ -92,7 +92,9 @@ export default function ContactPage() {
             {submitStatus === "success" && (
               <SubtleTextAnimation intensity="subtle">
                 <div className="text-black font-light py-2">
-                  <p className="text-base sm:text-lg">Message sent successfully!</p>
+                  <p className="text-base sm:text-lg">
+                    Message sent successfully!
+                  </p>
                   <p className="text-sm sm:text-base opacity-70">
                     We&apos;ll get back to you soon.
                   </p>
@@ -104,7 +106,9 @@ export default function ContactPage() {
               <SubtleTextAnimation intensity="subtle">
                 <div className="text-black font-light py-2">
                   <p className="text-base sm:text-lg">Error sending message.</p>
-                  <p className="text-sm sm:text-base opacity-70">Please try again.</p>
+                  <p className="text-sm sm:text-base opacity-70">
+                    Please try again.
+                  </p>
                 </div>
               </SubtleTextAnimation>
             )}
@@ -112,7 +116,11 @@ export default function ContactPage() {
 
           {/* Right Side - Contact Form */}
           <div className="lg:pt-16 pointer-events-auto order-2 lg:order-2">
-            <form ref={form} onSubmit={sendEmail} className="space-y-6 sm:space-y-8">
+            <form
+              ref={form}
+              onSubmit={sendEmail}
+              className="space-y-6 sm:space-y-8"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="group">
                   <label

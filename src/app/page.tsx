@@ -463,7 +463,7 @@ export default function HomePage() {
             left: auto !important;
           } /* Graywind Blinds */
           .project-title:nth-child(4) {
-            top: 8% !important;
+            top: 30% !important;
             left: 25% !important;
             right: auto !important;
             bottom: auto !important;
@@ -472,7 +472,7 @@ export default function HomePage() {
             bottom: 25% !important;
             left: 15% !important;
             right: auto !important;
-            top: auto !important;
+            top: 99% !important;
           } /* Nigaam Jewels */
           .project-title:nth-child(6) {
             bottom: 35% !important;

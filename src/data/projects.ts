@@ -297,7 +297,7 @@ export const projectsData: Project[] = [
   },
   {
     id: 11,
-    title: "Damien’s Gym",
+    title: "Damien's Gym",
     type: "NARRATIVE",
     thumbnailUrl: "/project-thumbnails/damiens-gym.png",
     videoUrl: "/optimized-project-videos/damiens-gym.mp4",
@@ -383,7 +383,7 @@ export const projectsData: Project[] = [
     title: "",
     type: "REEL",
     thumbnailUrl: "",
-    videoUrl: "",
+    videoUrl: "/optimized-project-videos/kairon.mp4",
     autoplay: 1,
     vimeoId: "1064532850",
     vimeoHash: "af5779abde",

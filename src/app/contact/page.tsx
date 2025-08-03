@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
 import Link from "next/link";
-import SubtleTextAnimation from "../components/SubtleTextAnimation";
+import { StaggerContainer } from "../hooks/useStaggerAnimation";
 
 export default function ContactPage() {
   const form = useRef<HTMLFormElement>(null);
@@ -50,18 +50,25 @@ export default function ContactPage() {
       <div className="w-full max-w-7xl mx-auto">
         {/* Mobile: Single column, Desktop: Two columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-20 items-start">
-          {/* Left Side - Contact Information */}
+          {/* Left Side - Contact Information with Stagger */}
           <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12 lg:pt-8 order-1 lg:order-1">
-            <SubtleTextAnimation intensity="subtle">
-              <div>
+            <StaggerContainer
+              options={{
+                delay: 0.1,
+                stagger: 0.15,
+                duration: 0.8,
+                from: "start",
+                y: 40,
+                selector: ".contact-info-item",
+              }}
+            >
+              <div className="contact-info-item">
                 <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-black leading-tight mb-2">
                   Become a <span className="italic">Kaironiac</span>
                 </h1>
               </div>
-            </SubtleTextAnimation>
 
-            <SubtleTextAnimation intensity="minimal">
-              <div className="space-y-4 sm:space-y-6 text-black">
+              <div className="contact-info-item space-y-4 sm:space-y-6 text-black">
                 <div>
                   <p className="text-base sm:text-lg lg:text-xl font-normal">
                     Partner/EP Reece Daniels
@@ -86,12 +93,18 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
-            </SubtleTextAnimation>
+            </StaggerContainer>
 
-            {/* Status Messages */}
+            {/* Status Messages with Stagger */}
             {submitStatus === "success" && (
-              <SubtleTextAnimation intensity="subtle">
-                <div className="text-black font-light py-2">
+              <StaggerContainer
+                className="text-black font-light py-2"
+                options={{
+                  delay: 0.1,
+                  selector: ".status-message",
+                }}
+              >
+                <div className="status-message">
                   <p className="text-base sm:text-lg">
                     Message sent successfully!
                   </p>
@@ -99,100 +112,115 @@ export default function ContactPage() {
                     We&apos;ll get back to you soon.
                   </p>
                 </div>
-              </SubtleTextAnimation>
+              </StaggerContainer>
             )}
 
             {submitStatus === "error" && (
-              <SubtleTextAnimation intensity="subtle">
-                <div className="text-black font-light py-2">
+              <StaggerContainer
+                className="text-black font-light py-2"
+                options={{
+                  delay: 0.1,
+                  selector: ".status-message",
+                }}
+              >
+                <div className="status-message">
                   <p className="text-base sm:text-lg">Error sending message.</p>
                   <p className="text-sm sm:text-base opacity-70">
                     Please try again.
                   </p>
                 </div>
-              </SubtleTextAnimation>
+              </StaggerContainer>
             )}
           </div>
 
-          {/* Right Side - Contact Form */}
+          {/* Right Side - Contact Form with Stagger */}
           <div className="lg:pt-16 pointer-events-auto order-2 lg:order-2">
-            <form
-              ref={form}
-              onSubmit={sendEmail}
-              className="space-y-6 sm:space-y-8"
+            <StaggerContainer
+              options={{
+                delay: 0.4,
+                stagger: 0.1,
+                duration: 0.7,
+                from: "start",
+                y: 30,
+                selector: ".form-field",
+              }}
             >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <div className="group">
+              <form
+                ref={form}
+                onSubmit={sendEmail}
+                className="space-y-6 sm:space-y-8"
+              >
+                <div className="form-field grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="group">
+                    <label
+                      htmlFor="first_name"
+                      className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
+                    >
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      id="first_name"
+                      name="first_name"
+                      required
+                      className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
+                      placeholder="Enter first name"
+                    />
+                  </div>
+
+                  <div className="group">
+                    <label
+                      htmlFor="last_name"
+                      className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      id="last_name"
+                      name="last_name"
+                      required
+                      className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
+                      placeholder="Enter last name"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-field group">
                   <label
-                    htmlFor="first_name"
+                    htmlFor="email"
                     className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
                   >
-                    First Name
+                    Email Address
                   </label>
                   <input
-                    type="text"
-                    id="first_name"
-                    name="first_name"
+                    type="email"
+                    id="email"
+                    name="email"
                     required
                     className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
-                    placeholder="Enter first name"
+                    placeholder="your.email@example.com"
                   />
                 </div>
 
-                <div className="group">
+                <div className="form-field group">
                   <label
-                    htmlFor="last_name"
+                    htmlFor="message"
                     className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
                   >
-                    Last Name
+                    Message
                   </label>
-                  <input
-                    type="text"
-                    id="last_name"
-                    name="last_name"
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
                     required
-                    className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
-                    placeholder="Enter last name"
-                  />
+                    className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 resize-none transition-colors duration-300"
+                    placeholder="Tell us about your project..."
+                  ></textarea>
                 </div>
-              </div>
 
-              <div className="group">
-                <label
-                  htmlFor="email"
-                  className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-
-              <div className="group">
-                <label
-                  htmlFor="message"
-                  className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 resize-none transition-colors duration-300"
-                  placeholder="Tell us about your project..."
-                ></textarea>
-              </div>
-
-              <div className="pt-2 sm:pt-4">
-                <SubtleTextAnimation intensity="subtle">
+                <div className="form-field pt-2 sm:pt-4">
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -203,9 +231,9 @@ export default function ContactPage() {
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   </button>
-                </SubtleTextAnimation>
-              </div>
-            </form>
+                </div>
+              </form>
+            </StaggerContainer>
           </div>
         </div>
       </div>

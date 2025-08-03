@@ -100,18 +100,11 @@ body {
   filter: blur(8px);
 }
 
-/* Project cards - prevent flash on initial page load */
+/* Project cards - only prevent flash on initial page navigation */
 .project-card {
   opacity: 0;
   transform: translateY(50px) scale(0.9);
   filter: blur(8px);
-}
-
-/* Override for animated project cards - when animation is active */
-.project-card.animated {
-  opacity: 1;
-  transform: none;
-  filter: none;
 }
 
 .description-paragraph {

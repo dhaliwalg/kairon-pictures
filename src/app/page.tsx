@@ -36,7 +36,9 @@ export default function HomePage() {
   );
 
   // Get the logo project (id: 14)
-  const logoProject: Project | undefined = projectsData.find((project) => project.id === 14);
+  const logoProject: Project | undefined = projectsData.find(
+    (project) => project.id === 14,
+  );
 
   // Create ambient movement for titles - organic floating like leaves on water
   const createAmbientMotion = (immediate = false) => {
@@ -398,7 +400,8 @@ export default function HomePage() {
 
   // Handle logo hover - similar to project hover but with logoProject
   const handleLogoHover = (isHovering: boolean) => {
-    if (!containerRef.current || !backgroundMediaRef.current || !logoProject) return;
+    if (!containerRef.current || !backgroundMediaRef.current || !logoProject)
+      return;
 
     const allTitles = containerRef.current.querySelectorAll(".project-title");
 
@@ -439,7 +442,8 @@ export default function HomePage() {
 
       // Create new media element for logo video
       const isVideo =
-        logoProject.videoUrl.includes(".mp4") || logoProject.videoUrl.includes(".webm");
+        logoProject.videoUrl.includes(".mp4") ||
+        logoProject.videoUrl.includes(".webm");
       let newMedia: HTMLVideoElement | HTMLImageElement;
 
       if (isVideo) {
@@ -665,8 +669,8 @@ export default function HomePage() {
         className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
       >
         <div className="text-center">
-          <Link 
-            href="/work/14" 
+          <Link
+            href="/work/14"
             className="pointer-events-auto"
             onMouseEnter={() => handleLogoHover(true)}
             onMouseLeave={() => handleLogoHover(false)}

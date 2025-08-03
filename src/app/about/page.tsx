@@ -27,25 +27,11 @@ export default function AboutPage() {
         >
           <div className="description-paragraph">
             <p className="text-base sm:text-lg md:text-[22px] leading-[1.4] sm:leading-[1.3] tracking-[0.01em] font-normal mb-6 sm:mb-8">
-              <span className="font-bold">KAIRON PICTURES</span> represents the
-              next generation of filmmakers focused on hand-made experiences in
-              a world of cookie-cutter content. We strive in crafting narratives
-              that resonate with audiences everywhere, while translating the
-              visions of our clients into a tangible reality we can all consume.
-            </p>
-          </div>
-          <div className="description-paragraph">
-            <p className="text-sm sm:text-base md:text-[16px] leading-[1.5] sm:leading-[1.4] tracking-[0.01em] mb-6 sm:mb-8 text-black font-extrabold">
-              <span className="font-semibold">
-                Derived from the Greek word καιρός{" "}
-              </span>
-              <span className="font-mono text-xs sm:text-sm md:text-[14px] tracking-wider">
-                /ˈkaɪ.rɒs/
-              </span>
-              <span className="font-semibold">
-                , we represent the season of action; we don&apos;t wait for it,
-                we are the action.
-              </span>
+              This is sample text that will be replaced with the new bio
+              content. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
         </StaggerContainer>
@@ -64,24 +50,24 @@ export default function AboutPage() {
             setInitialStyles: false, // CSS handles initial styles
           }}
         >
-          {/* Mobile: 2x3 grid, Desktop: single row */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-x-8 lg:gap-x-12 xl:gap-x-16 gap-y-4 sm:gap-y-6 mb-4">
+          {/* Mobile: 2x5 grid, Desktop: 2 rows */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 items-center justify-center gap-4 sm:gap-6 md:gap-x-8 lg:gap-x-12 xl:gap-x-16 gap-y-4 sm:gap-y-6 mb-4">
             <div className="partner-logo">
               <Image
-                src="/sony.png"
-                alt="Sony"
+                src="/1.4.png"
+                alt="1.4"
                 width={250}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
               <Image
                 src="/tribeca.png"
-                alt="Tribeca Festival"
+                alt="Tribeca"
                 width={250}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -90,7 +76,34 @@ export default function AboutPage() {
                 alt="DGA"
                 width={250}
                 height={80}
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+              />
+            </div>
+            <div className="partner-logo">
+              <Image
+                src="/berlin.png"
+                alt="Berlin"
+                width={250}
+                height={80}
                 className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+              />
+            </div>
+            <div className="partner-logo">
+              <Image
+                src="/yda.png"
+                alt="YDA"
+                width={250}
+                height={80}
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+              />
+            </div>
+            <div className="partner-logo">
+              <Image
+                src="/sony.png"
+                alt="Sony"
+                width={250}
+                height={80}
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -99,25 +112,34 @@ export default function AboutPage() {
                 alt="NASCAR"
                 width={250}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
               <Image
-                src="/berlin.png"
-                alt="BERLIN"
+                src="/appletv.png"
+                alt="Apple TV"
                 width={250}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
               <Image
-                src="/shortlist.png"
-                alt="Shortlist"
+                src="/jgr.png"
+                alt="JGR"
                 width={250}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+              />
+            </div>
+            <div className="partner-logo">
+              <Image
+                src="/alamo.png"
+                alt="Alamo Records"
+                width={250}
+                height={80}
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
           </div>
@@ -136,7 +158,7 @@ export default function AboutPage() {
         >
           <div className="cta-text">
             <p className="text-lg sm:text-xl md:text-[24px] font-normal">
-              <em>Become a </em>
+              <span>Become a </span>
               <Link
                 href="/contact"
                 className="font-bold hover:underline pointer-events-auto"

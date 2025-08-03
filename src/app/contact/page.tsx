@@ -46,7 +46,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-8 sm:py-8">
       <div className="w-full max-w-7xl mx-auto">
         {/* Mobile: Single column, Desktop: Two columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-20 items-start">

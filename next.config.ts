@@ -21,93 +21,93 @@ const nextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     // Add modern image formats and optimization
-    formats: ['image/webp', 'image/avif'],
+    formats: ["image/webp", "image/avif"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 60, // Cache images for 60 seconds minimum
   },
-  
+
   // Enable compression
   compress: true,
-  
+
   // Note: swcMinify is now default in Next.js 13+ and deprecated
-  
+
   // Add security and performance headers
   async headers() {
     return [
       {
         // Apply to all routes
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
           {
-            key: 'X-Frame-Options',
-            value: 'DENY',
+            key: "X-Frame-Options",
+            value: "DENY",
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
           },
           {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            key: "Referrer-Policy",
+            value: "origin-when-cross-origin",
           },
           {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
           },
         ],
       },
       {
         // Cache static assets aggressively
-        source: '/optimized-project-videos/(.*)',
+        source: "/optimized-project-videos/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable', // 1 year
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable", // 1 year
           },
         ],
       },
       {
         // Cache images
-        source: '/project-thumbnails/(.*)',
+        source: "/project-thumbnails/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable', // 1 year
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable", // 1 year
           },
         ],
       },
       {
         // Cache fonts
-        source: '/fonts/(.*)',
+        source: "/fonts/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable', // 1 year
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable", // 1 year
           },
         ],
       },
       {
         // Cache stills/images
-        source: '/stills/(.*)',
+        source: "/stills/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable', // 1 year
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable", // 1 year
           },
         ],
       },
       {
         // Allow embedding in iframes for Vimeo (if needed)
-        source: '/work/(.*)',
+        source: "/work/(.*)",
         headers: [
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN', // Override DENY for work pages that might have Vimeo embeds
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN", // Override DENY for work pages that might have Vimeo embeds
           },
         ],
       },
@@ -129,9 +129,9 @@ const nextConfig = {
   // Turbopack configuration (replaces experimental.turbo)
   turbopack: {
     rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
       },
     },
   },
@@ -144,16 +144,29 @@ const nextConfig = {
   // Webpack configuration for additional optimizations
   // Note: Only use webpack config if you're NOT using Turbopack
   // Remove this section if you want to use Turbopack for dev
-  webpack: (config: { optimization: { splitChunks: { chunks: string; cacheGroups: { vendor: { test: RegExp; name: string; chunks: string; }; }; }; }; module: { rules: { test: RegExp; use: string[]; }[]; }; }, { dev, isServer }: { dev: boolean; isServer: boolean }) => {
+  webpack: (
+    config: {
+      optimization: {
+        splitChunks: {
+          chunks: string;
+          cacheGroups: {
+            vendor: { test: RegExp; name: string; chunks: string };
+          };
+        };
+      };
+      module: { rules: { test: RegExp; use: string[] }[] };
+    },
+    { dev, isServer }: { dev: boolean; isServer: boolean },
+  ) => {
     // Only apply webpack optimizations in production
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
-        chunks: 'all',
+        chunks: "all",
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
+            name: "vendors",
+            chunks: "all",
           },
         },
       };
@@ -162,7 +175,7 @@ const nextConfig = {
     // Handle SVG files
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
 
     return config;

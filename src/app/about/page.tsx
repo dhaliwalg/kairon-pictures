@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { StaggerContainer } from "../hooks/useStaggerAnimation";
+import { StaggerContainer } from "@/app/hooks/useStaggerAnimation";
 
 export const metadata = {
   title: "ABOUT - Kairon Pictures",
@@ -22,7 +22,7 @@ export default function AboutPage() {
             from: "start",
             y: 40,
             selector: ".description-paragraph",
-            setInitialStyles: false, // CSS handles initial styles
+            setInitialStyles: false,
           }}
         >
           <div className="description-paragraph">
@@ -47,7 +47,7 @@ export default function AboutPage() {
             y: 30,
             scale: 0.9,
             selector: ".partner-logo",
-            setInitialStyles: false, // CSS handles initial styles
+            setInitialStyles: false,
           }}
         >
           {/* Mobile: 2x5 grid, Desktop: 2 rows */}
@@ -153,7 +153,7 @@ export default function AboutPage() {
             duration: 0.8,
             y: 30,
             selector: ".cta-text",
-            setInitialStyles: false, // CSS handles initial styles
+            setInitialStyles: false,
           }}
         >
           <div className="cta-text">

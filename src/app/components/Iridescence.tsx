@@ -77,15 +77,15 @@ export default function Iridescence({
   speed = 1.0,
   amplitude = 0.1,
   mouseReact = true,
-  mouseRadius = 0.7, // Increased default radius for larger area
-  mouseStrength = 0.08, // Slightly reduced strength to compensate for larger area
+  mouseRadius = 0.7,
+  mouseStrength = 0.08,
   ...rest
 }: IridescenceProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0.5, y: 0.5 });
-  const targetMouseActive = useRef(0.0); // Target value for uMouseActive
-  const currentMouseActive = useRef(0.0); // Current animated value
-  const [isReady, setIsReady] = useState(false); // New state to control visibility
+  const targetMouseActive = useRef(0.0);
+  const currentMouseActive = useRef(0.0);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (!ctnDom.current) return;
@@ -93,7 +93,7 @@ export default function Iridescence({
 
     const renderer = new Renderer();
     const gl = renderer.gl;
-    gl.clearColor(0, 0, 0, 1); // <--- CHANGED: Set clear color to black (0,0,0,1)
+    gl.clearColor(0, 0, 0, 1);
 
     const program: Program = new Program(gl, {
       vertex: vertexShader,
@@ -115,7 +115,7 @@ export default function Iridescence({
         uSpeed: { value: speed },
         uMouseRadius: { value: mouseRadius },
         uMouseStrength: { value: mouseStrength },
-        uMouseActive: { value: 0.0 }, // Initialize as inactive
+        uMouseActive: { value: 0.0 },
       },
     });
 
@@ -218,12 +218,11 @@ export default function Iridescence({
     mouseRadius,
     mouseStrength,
     isReady,
-  ]); // <--- ADDED isReady to dependencies
+  ]);
 
   return (
     <div
       ref={ctnDom}
-      // <--- ADDED transition and conditional opacity classes
       className={`w-full h-full transition-opacity duration-1000 ease-in ${
         isReady ? "opacity-100" : "opacity-0"
       }`}

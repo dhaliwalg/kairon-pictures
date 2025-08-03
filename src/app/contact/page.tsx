@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 import Link from "next/link";
-import { StaggerContainer } from "../hooks/useStaggerAnimation";
+import { StaggerContainer } from "@/app/hooks/useStaggerAnimation";
 
 export default function ContactPage() {
   const form = useRef<HTMLFormElement>(null);
@@ -12,51 +12,41 @@ export default function ContactPage() {
     "",
   );
 
-const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setSubmitStatus("");
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("");
 
-  if (!form.current) return;
+    if (!form.current) return;
 
-  // Get environment variables
-  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    // Get environment variables
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-  // Validate environment variables exist
-  if (!serviceId || !templateId || !publicKey) {
-    console.error('EmailJS environment variables are missing');
-    setSubmitStatus("error");
-    setIsSubmitting(false);
-    return;
-  }
-
-  // Use environment variables instead of hardcoded values
-  emailjs
-    .sendForm(
-      serviceId,        // was: "service_vtxdbhl"
-      templateId,       // was: "template_tsy98u9"
-      form.current,
-      publicKey,        // was: "h4qDCoPJfRSKwf4Sd"
-    )
-    .then(
-      (result: EmailJSResponseStatus) => {
-        console.log(result.text);
-        setSubmitStatus("success");
-        if (form.current) {
-          form.current.reset();
-        }
-      },
-      (error: EmailJSResponseStatus) => {
-        console.log(error.text);
-        setSubmitStatus("error");
-      },
-    )
-    .finally(() => {
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitStatus("error");
       setIsSubmitting(false);
-    });
-};
+      return;
+    }
+
+    emailjs
+      .sendForm(serviceId, templateId, form.current, publicKey)
+      .then(
+        () => {
+          setSubmitStatus("success");
+          if (form.current) {
+            form.current.reset();
+          }
+        },
+        () => {
+          setSubmitStatus("error");
+        },
+      )
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-8 sm:py-8">
@@ -73,7 +63,7 @@ const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
                 from: "start",
                 y: 40,
                 selector: ".contact-info-item",
-                setInitialStyles: false, // CSS handles initial styles
+                setInitialStyles: false,
               }}
             >
               <div className="contact-info-item">
@@ -116,7 +106,7 @@ const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
                 options={{
                   delay: 0.1,
                   selector: ".status-message",
-                  setInitialStyles: false, // CSS handles initial styles
+                  setInitialStyles: false,
                 }}
               >
                 <div className="status-message">
@@ -136,7 +126,7 @@ const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
                 options={{
                   delay: 0.1,
                   selector: ".status-message",
-                  setInitialStyles: false, // CSS handles initial styles
+                  setInitialStyles: false,
                 }}
               >
                 <div className="status-message">
@@ -159,7 +149,7 @@ const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
                 from: "start",
                 y: 30,
                 selector: ".form-field",
-                setInitialStyles: false, // CSS handles initial styles
+                setInitialStyles: false,
               }}
             >
               <form

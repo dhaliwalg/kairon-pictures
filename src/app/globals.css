@@ -1,16 +1,18 @@
-/* app/globals.css */
 @import "tailwindcss";
 @tailwind utilities;
 
 /* Define your custom properties/CSS variables for the dark theme */
 :root {
-  --background: #000000; /* Pure black for the background, as seen in PPT */
-  --foreground: #ffffff; /* Pure white for text, as seen in PPT */
+  --background: #000000;
+  --foreground: #ffffff;
+
   /* Updated font variables to use Haffer as primary */
   --font-geist-sans: "Geist Sans", sans-serif; /* Keep as fallback */
   --font-geist-mono: "Geist Mono", monospace; /* Keep as fallback */
-  --font-haffer-sans: "Haffer", "Geist Sans", sans-serif; /* Haffer as primary */
-  --font-haffer-mono: "Haffer Mono", "Geist Mono", monospace; /* Haffer Mono as primary */
+  --font-haffer-sans:
+    "Haffer", "Geist Sans", sans-serif; /* Haffer as primary */
+  --font-haffer-mono:
+    "Haffer Mono", "Geist Mono", monospace; /* Haffer Mono as primary */
 }
 
 /* @theme inline is part of Tailwind v4's new theming system. */
@@ -28,7 +30,7 @@ html {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   /* Reserve space for scrollbar to prevent layout shifts */
-  scrollbar-gutter: stable; /* Modern browsers */
+  scrollbar-gutter: stable;
 }
 
 /* WebKit browsers (Chrome, Safari, newer Edge) */
@@ -72,8 +74,8 @@ body::-webkit-scrollbar {
 
 /* Basic body styles */
 body {
-  background: var(--background); /* Use the CSS variable for background */
-  color: var(--foreground); /* Use the CSS variable for text color */
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-geist-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

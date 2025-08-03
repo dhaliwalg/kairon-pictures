@@ -70,7 +70,7 @@ export default function ProjectDetailsPage() {
           <iframe
             src={`https://player.vimeo.com/video/${project.vimeoId}${
               project.vimeoHash ? `?h=${project.vimeoHash}&` : "?"
-            }autoplay=${project.autoplay}&loop=0&byline=0&portrait=0&title=0${project.autoplay ? "&muted=0" : "0"}`} // <-- SLIGHTLY CLEANER
+            }autoplay=${project.autoplay}&loop=0&byline=0&portrait=0&title=0${project.autoplay ? "&muted=0" : "0"}`}
             width="100%"
             height="100%"
             allow="autoplay; fullscreen;"

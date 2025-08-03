@@ -2,10 +2,15 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { projectsData } from "@/data/projects";
 import ProjectCard from "@/app/components/ProjectCard";
-import { StaggerContainer } from "../hooks/useStaggerAnimation";
-import { ErrorBoundary } from "../components/ErrorBoundary";
+import { StaggerContainer } from "@/app/hooks/useStaggerAnimation";
+import { ErrorBoundary } from "@/app/components/ErrorBoundary";
 
-type ProjectTypeFilter = "ALL" | "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO" | "REEL";
+type ProjectTypeFilter =
+  | "ALL"
+  | "NARRATIVE"
+  | "COMMERCIAL"
+  | "MUSIC VIDEO"
+  | "REEL";
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectTypeFilter>("ALL");
@@ -37,7 +42,7 @@ export default function WorkPage() {
             from: "center",
             y: 30,
             selector: ".filter-pill",
-            setInitialStyles: false, // CSS handles initial styles to prevent flash
+            setInitialStyles: false,
           }}
         >
           {(
@@ -50,7 +55,7 @@ export default function WorkPage() {
           ).map((filter) => (
             <button
               key={filter}
-              onClick={() => handleFilterChange(filter)} // <- NOW USING THE MEMOIZED HANDLER
+              onClick={() => handleFilterChange(filter)}
               className={`filter-pill py-2 px-3 sm:px-4 md:px-6 rounded-full border border-white transition-colors duration-200 text-xs sm:text-sm md:text-lg lg:text-xl uppercase whitespace-nowrap
               ${
                 activeFilter === filter
@@ -72,31 +77,30 @@ export default function WorkPage() {
           key={activeFilter} // Simple key based on filter - forces re-animation
           className="pointer-events-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full"
           options={{
-            delay: 0.3, // Consistent delay
+            delay: 0.3,
             stagger: 0.12,
             duration: 0.8,
             from: "start",
             y: 50,
             scale: 0.9,
             selector: ".project-card",
-            setInitialStyles: true, // Always use JS - simpler and more reliable
+            setInitialStyles: true,
           }}
         >
-{filteredProjects.map((project) => (
-  <ErrorBoundary 
-    key={project.id}
-    fallback={
-      <div className="w-full aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
-        <p className="text-gray-400">Project unavailable</p>
-      </div>
-    }
-  >
-    <div className="project-card w-full max-w-sm sm:max-w-none">
-      <ProjectCard project={project} />
-    </div>
-  </ErrorBoundary>
-))}
-
+          {filteredProjects.map((project) => (
+            <ErrorBoundary
+              key={project.id}
+              fallback={
+                <div className="w-full aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
+                  <p className="text-gray-400">Project unavailable</p>
+                </div>
+              }
+            >
+              <div className="project-card w-full max-w-sm sm:max-w-none">
+                <ProjectCard project={project} />
+              </div>
+            </ErrorBoundary>
+          ))}
         </StaggerContainer>
 
         {/* Message if no projects found for filter */}

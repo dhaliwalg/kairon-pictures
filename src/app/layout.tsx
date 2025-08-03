@@ -1,15 +1,19 @@
 import "./globals.css";
-import Header from "./components/Header";
+import Header from "@/app/components/Header";
 import { Metadata } from "next";
-import Iridescence from "./components/Iridescence";
-import { ErrorBoundary } from "./components/ErrorBoundary";
+import Iridescence from "@/app/components/Iridescence";
+import { ErrorBoundary } from "@/app/components/ErrorBoundary";
 export const metadata: Metadata = {
   title: "Kairon Pictures",
   description:
     "Creative production company specializing in narrative, commercial, fashion, and music video productions.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>

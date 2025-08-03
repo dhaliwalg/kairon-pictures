@@ -2,14 +2,14 @@ export type Project = {
   id: number;
   title: string;
   type: "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO" | "REEL";
-  thumbnailUrl: string; // The static image URL for the poster
-  videoUrl: string; // The URL to the video file
-  vimeoId?: string; // Optional Vimeo video ID
+  thumbnailUrl: string; // Local thumbnail location
+  videoUrl: string; // Local video location for ProjectCard
+  vimeoId?: string; // Vimeo video ID
   vimeoHash?: string; // Optional Vimeo hash parameter for private videos
   imageUrls?: string[]; // Optional array for image slideshows
   crew?: { role: string; name: string }[]; // Optional array for cast/crew
-  hiddenFromWorkPage?: boolean; // Added to hide from the work page grid
-  autoplay?: number; // Keep as optional for flexibility, but we'll set it
+  hiddenFromWorkPage?: boolean; // Added to hide content from the work page grid
+  autoplay?: number;
 };
 
 export const projectsData: Project[] = [
@@ -30,7 +30,7 @@ export const projectsData: Project[] = [
     vimeoId: undefined,
     vimeoHash: undefined,
     crew: [{ role: "Directed", name: "Eámonn Wrightstone" }],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ export const projectsData: Project[] = [
     vimeoId: "1105948094",
     vimeoHash: "be1234ce86",
     crew: [{ role: "Directed", name: "Keith Leung" }],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 3,
@@ -81,7 +81,7 @@ export const projectsData: Project[] = [
       { role: "Editor", name: "Reece Daniels" },
       { role: "Color", name: "Jeffrey Chance" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 4,
@@ -113,7 +113,7 @@ export const projectsData: Project[] = [
       { role: "Post Sound", name: "Jenna Tresidder" },
       { role: "Color", name: "Ben Cerauli" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 5,
@@ -141,7 +141,7 @@ export const projectsData: Project[] = [
       { role: "Post Sound", name: "Francisco Nobile" },
       { role: "Edit", name: "Aashish Joshi" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 6,
@@ -170,7 +170,7 @@ export const projectsData: Project[] = [
       { role: "Directed", name: "Aashish Joshi & Nick Knezevich" },
       { role: "Written by", name: "Aashish Joshi & Nick Knezevich" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 7,
@@ -194,7 +194,7 @@ export const projectsData: Project[] = [
       { role: "VFX", name: "Thermonuclear" },
       { role: "VFX", name: "Aashish Joshi" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 8,
@@ -205,7 +205,7 @@ export const projectsData: Project[] = [
     vimeoId: "1065704065",
     vimeoHash: "72c8bb8562",
     crew: [],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 9,
@@ -261,7 +261,7 @@ export const projectsData: Project[] = [
       { role: "Color", name: "Miles Colby Perreault" },
       { role: "Posters", name: "Jeffery Leung" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 10,
@@ -293,7 +293,7 @@ export const projectsData: Project[] = [
       { role: "VFX", name: "Aashish Joshi" },
       { role: "Color", name: "Ben Cerauli" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 11,
@@ -340,7 +340,7 @@ export const projectsData: Project[] = [
       { role: "Foley Artist", name: "Villiam Williams" },
       { role: "Assistant Sound Editor", name: "David J. Harding" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 12,
@@ -351,7 +351,7 @@ export const projectsData: Project[] = [
     vimeoId: "827845705",
     vimeoHash: undefined,
     crew: [],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 13,
@@ -376,7 +376,7 @@ export const projectsData: Project[] = [
       { role: "Production Designer", name: "Menny Son" },
       { role: "Production Assistants", name: "Lucas Sun" },
     ],
-    autoplay: 0, // Added
+    autoplay: 0,
   },
   {
     id: 14,

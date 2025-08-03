@@ -1,5 +1,3 @@
-// src/app/components/ProjectCard.tsx - Improved version
-
 "use client";
 import React, { useRef, useState, useCallback } from "react";
 import Link from "next/link";
@@ -19,8 +17,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const handleMouseEnter = useCallback(() => {
     if (videoRef.current && !videoError) {
       setIsVideoPlaying(true);
-      videoRef.current.play().catch((error) => {
-        console.warn('Video play failed:', error);
+      videoRef.current.play().catch(() => {
         setVideoError(true);
       });
     }
@@ -39,15 +36,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   }, []);
 
   const handleVideoError = useCallback(() => {
-    console.warn('Video failed to load:', project.videoUrl);
     setVideoError(true);
-  }, [project.videoUrl]);
-
-  // Validate project data AFTER hooks
-  if (!project || !project.id || !project.title) {
-    console.warn('Invalid project data:', project);
-    return null;
-  }
+  }, []);
 
   const projectDetailLink = `/work/${project.id.toString()}`;
 
@@ -70,38 +60,34 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         onLoad={handleImageLoadingComplete}
-        onError={() => console.warn('Thumbnail failed to load:', project.thumbnailUrl)}
         className={`object-cover transition-opacity duration-300 ${
           thumbnailLoaded ? "opacity-100" : "opacity-0"
         } ${isVideoPlaying && !videoError ? "opacity-0" : "opacity-100"}`}
       />
 
       {/* Video Element - only render if we have a valid video URL and no error */}
-{project.videoUrl && !videoError && (
-  <video
-    ref={videoRef}
-    title={project.title}
-    loop
-    muted
-    playsInline
-    onError={handleVideoError}
-    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-      isVideoPlaying ? "opacity-100" : "opacity-0"
-    }`}
-  >
-    {/* WebM first (smaller file size) */}
-    <source 
-      src={project.videoUrl.replace('.mp4', '.webm')} 
-      type="video/webm" 
-    />
-    {/* MP4 fallback */}
-    <source 
-      src={project.videoUrl} 
-      type="video/mp4" 
-    />
-    Your browser does not support the video tag.
-  </video>
-)}
+      {project.videoUrl && !videoError && (
+        <video
+          ref={videoRef}
+          title={project.title}
+          loop
+          muted
+          playsInline
+          onError={handleVideoError}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+            isVideoPlaying ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {/* WebM first (smaller file size) */}
+          <source
+            src={project.videoUrl.replace(".mp4", ".webm")}
+            type="video/webm"
+          />
+          {/* MP4 fallback */}
+          <source src={project.videoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
 
       {/* Title and Type Overlay */}
       <div className="absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black/50 to-transparent">

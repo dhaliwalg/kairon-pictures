@@ -50,7 +50,9 @@ export const useStaggerAnimation = (options: StaggerAnimationOptions = {}) => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const elements = Array.from(containerRef.current.querySelectorAll(selector));
+    const elements = Array.from(
+      containerRef.current.querySelectorAll(selector),
+    );
     if (elements.length === 0) return;
 
     // Store elements for cleanup
@@ -106,53 +108,67 @@ export const useStaggerAnimation = (options: StaggerAnimationOptions = {}) => {
   ]);
 
   // Method to trigger animation manually
-  const triggerAnimation = useCallback((customDelay = 0) => {
-    if (!containerRef.current) return;
+  const triggerAnimation = useCallback(
+    (customDelay = 0) => {
+      if (!containerRef.current) return;
 
-    const elements = Array.from(containerRef.current.querySelectorAll(selector));
-    if (elements.length === 0) return;
+      const elements = Array.from(
+        containerRef.current.querySelectorAll(selector),
+      );
+      if (elements.length === 0) return;
 
-    // Store elements for cleanup
-    elementsRef.current = elements;
+      // Store elements for cleanup
+      elementsRef.current = elements;
 
-    // Cleanup previous animation
-    cleanup();
+      // Cleanup previous animation
+      cleanup();
 
-    // Set initial state
-    gsap.set(elements, {
+      // Set initial state
+      gsap.set(elements, {
+        opacity,
+        y,
+        scale,
+        filter,
+      });
+
+      // Create timeline with custom delay
+      timelineRef.current = gsap.timeline({ delay: customDelay });
+
+      // Animate in with stagger
+      timelineRef.current.to(elements, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        duration,
+        ease,
+        stagger: {
+          amount: stagger * elements.length,
+          from,
+        },
+      });
+    },
+    [
+      cleanup,
+      selector,
       opacity,
       y,
       scale,
       filter,
-    });
-
-    // Create timeline with custom delay
-    timelineRef.current = gsap.timeline({ delay: customDelay });
-
-    // Animate in with stagger
-    timelineRef.current.to(elements, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      filter: "blur(0px)",
       duration,
       ease,
-      stagger: {
-        amount: stagger * elements.length,
-        from,
-      },
-    });
-  }, [cleanup, selector, opacity, y, scale, filter, duration, ease, stagger, from]);
+      stagger,
+      from,
+    ],
+  );
 
   return { containerRef, triggerAnimation };
 };
 
-// Updated component-based approach
 interface StaggerContainerProps {
   children: React.ReactNode;
   className?: string;
   options?: StaggerAnimationOptions;
-  // New prop to get access to trigger function
   onAnimationReady?: (triggerAnimation: (delay?: number) => void) => void;
 }
 

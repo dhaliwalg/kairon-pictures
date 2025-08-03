@@ -1,4 +1,4 @@
-#!/bin/bash
+# Script to reoptimize all video files
 
 # Step 1: Rename your current optimized folder to be the input
 echo "Renaming optimized-project-videos to project-videos-backup..."

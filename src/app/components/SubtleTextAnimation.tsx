@@ -15,7 +15,7 @@ export default function SubtleTextAnimation({
   disabled = false,
 }: SubtleTextAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationTimelinesRef = useRef<gsap.core.Timeline[]>([]); // Renamed for clarity
+  const animationTimelinesRef = useRef<gsap.core.Timeline[]>([]);
 
   useEffect(() => {
     if (!containerRef.current || disabled) return;

@@ -70,7 +70,7 @@ export default function WorkPage() {
           key={activeFilter} // Simple key based on filter - forces re-animation
           className="pointer-events-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full"
           options={{
-            delay: 0.6, // Consistent delay
+            delay: 0.3, // Consistent delay
             stagger: 0.12,
             duration: 0.8,
             from: "start",

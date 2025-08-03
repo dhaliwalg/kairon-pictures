@@ -48,39 +48,40 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        {/* Mobile: Single column, Desktop: Two columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-20 items-start">
           {/* Left Side - Contact Information */}
-          <div className="space-y-10 lg:space-y-12 lg:pt-8">
+          <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12 lg:pt-8 order-1 lg:order-1">
             <SubtleTextAnimation intensity="subtle">
               <div>
-                <h1 className="text-4xl lg:text-6xl font-light text-black leading-tight mb-2">
+                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-black leading-tight mb-2">
                   Become a <span className="italic">Kaironiac</span>
                 </h1>
               </div>
             </SubtleTextAnimation>
 
             <SubtleTextAnimation intensity="minimal">
-              <div className="space-y-6 text-black">
+              <div className="space-y-4 sm:space-y-6 text-black">
                 <div>
-                  <p className="text-lg lg:text-xl font-normal">
+                  <p className="text-base sm:text-lg lg:text-xl font-normal">
                     Partner/EP Reece Daniels
                   </p>
                 </div>
                 <div>
-                  <p className="text-lg lg:text-xl font-normal">
+                  <p className="text-base sm:text-lg lg:text-xl font-normal">
                     Partner/EP Aashish Joshi
                   </p>
                 </div>
                 <div>
                   <Link
                     href="mailto:hello@kaironpictures.com"
-                    className="text-lg lg:text-xl font-normal hover:text-black/70 transition-colors duration-300 underline decoration-1 underline-offset-4 pointer-events-auto"
+                    className="text-base sm:text-lg lg:text-xl font-normal hover:text-black/70 transition-colors duration-300 underline decoration-1 underline-offset-4 pointer-events-auto"
                   >
                     hello@kaironpictures.com
                   </Link>
                 </div>
                 <div>
-                  <p className="text-lg lg:text-xl font-normal">
+                  <p className="text-base sm:text-lg lg:text-xl font-normal">
                     New York • Los Angeles
                   </p>
                 </div>
@@ -91,8 +92,8 @@ export default function ContactPage() {
             {submitStatus === "success" && (
               <SubtleTextAnimation intensity="subtle">
                 <div className="text-black font-light py-2">
-                  <p className="text-lg">Message sent successfully!</p>
-                  <p className="text-base opacity-70">
+                  <p className="text-base sm:text-lg">Message sent successfully!</p>
+                  <p className="text-sm sm:text-base opacity-70">
                     We&apos;ll get back to you soon.
                   </p>
                 </div>
@@ -102,21 +103,21 @@ export default function ContactPage() {
             {submitStatus === "error" && (
               <SubtleTextAnimation intensity="subtle">
                 <div className="text-black font-light py-2">
-                  <p className="text-lg">Error sending message.</p>
-                  <p className="text-base opacity-70">Please try again.</p>
+                  <p className="text-base sm:text-lg">Error sending message.</p>
+                  <p className="text-sm sm:text-base opacity-70">Please try again.</p>
                 </div>
               </SubtleTextAnimation>
             )}
           </div>
 
           {/* Right Side - Contact Form */}
-          <div className="lg:pt-16 pointer-events-auto">
-            <form ref={form} onSubmit={sendEmail} className="space-y-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="lg:pt-16 pointer-events-auto order-2 lg:order-2">
+            <form ref={form} onSubmit={sendEmail} className="space-y-6 sm:space-y-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="group">
                   <label
                     htmlFor="first_name"
-                    className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
+                    className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
                   >
                     First Name
                   </label>
@@ -125,7 +126,7 @@ export default function ContactPage() {
                     id="first_name"
                     name="first_name"
                     required
-                    className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-3 text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
+                    className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
                     placeholder="Enter first name"
                   />
                 </div>
@@ -133,7 +134,7 @@ export default function ContactPage() {
                 <div className="group">
                   <label
                     htmlFor="last_name"
-                    className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
+                    className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
                   >
                     Last Name
                   </label>
@@ -142,7 +143,7 @@ export default function ContactPage() {
                     id="last_name"
                     name="last_name"
                     required
-                    className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-3 text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
+                    className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
                     placeholder="Enter last name"
                   />
                 </div>
@@ -151,7 +152,7 @@ export default function ContactPage() {
               <div className="group">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
+                  className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
                 >
                   Email Address
                 </label>
@@ -160,7 +161,7 @@ export default function ContactPage() {
                   id="email"
                   name="email"
                   required
-                  className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-3 text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
+                  className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 transition-colors duration-300"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -168,26 +169,26 @@ export default function ContactPage() {
               <div className="group">
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-black/70 mb-3 tracking-wider uppercase"
+                  className="block text-xs sm:text-sm font-medium text-black/70 mb-2 sm:mb-3 tracking-wider uppercase"
                 >
                   Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  rows={6}
+                  rows={5}
                   required
-                  className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-3 text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 resize-none transition-colors duration-300"
+                  className="w-full bg-transparent border-0 border-b-2 border-black/20 focus:border-black px-0 py-2 sm:py-3 text-base sm:text-lg font-light text-black placeholder-black/40 focus:outline-none focus:ring-0 resize-none transition-colors duration-300"
                   placeholder="Tell us about your project..."
                 ></textarea>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-2 sm:pt-4">
                 <SubtleTextAnimation intensity="subtle">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group relative bg-black hover:bg-black/80 disabled:bg-black/40 text-white font-light tracking-widest uppercase text-sm py-4 px-12 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-black/20 focus:ring-offset-2 overflow-hidden"
+                    className="group relative bg-black hover:bg-black/80 disabled:bg-black/40 text-white font-light tracking-widest uppercase text-xs sm:text-sm py-3 sm:py-4 px-8 sm:px-12 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-black/20 focus:ring-offset-2 overflow-hidden w-full sm:w-auto"
                   >
                     <span className="relative z-10">
                       {isSubmitting ? "Sending..." : "Submit"}

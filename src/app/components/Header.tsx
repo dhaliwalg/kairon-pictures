@@ -15,7 +15,7 @@ const Header = () => {
       <nav className="flex justify-between items-center h-full pointer-events-none px-4 sm:px-8 w-full">
         {/* Logo on far left */}
         <div className="flex-shrink-0">
-          <Link href="/" className="hover:opacity-80 py-2 pointer-events-auto">
+          <Link href="/" className="hover:invert py-2 pointer-events-auto">
             <Image
               src="/BLACKKP.png"
               alt="Home"

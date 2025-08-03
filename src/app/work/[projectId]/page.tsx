@@ -63,7 +63,9 @@ export default function ProjectDetailsPage() {
       <div className="pt-[64px] md:pt-[80px] lg:pt-[96px]"></div>
 
       {/* Media Section: Vimeo Video Embed or Image Slideshow */}
-      <div className="w-full max-w-4xl mx-auto bg-black aspect-video flex-shrink-0 relative pointer-events-auto overflow-hidden">
+      <div
+        className={`w-full bg-black aspect-video flex-shrink-0 relative pointer-events-auto ${project.vimeoId ? "" : "max-w-4xl mx-auto overflow-hidden"}`}
+      >
         {project.vimeoId ? (
           <iframe
             src={`https://player.vimeo.com/video/${project.vimeoId}${

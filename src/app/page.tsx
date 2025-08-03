@@ -160,24 +160,49 @@ export default function HomePage() {
   }, []);
 
   // Improved cleanup function
-  const cleanupMedia = (mediaElement: HTMLVideoElement | HTMLImageElement) => {
-    if (!mediaElement) return;
+const cleanupMedia = (mediaElement: HTMLVideoElement | HTMLImageElement) => {
+  if (!mediaElement) return;
 
-    // Kill any animations on this element
-    gsap.killTweensOf(mediaElement);
+  // Kill any animations on this element
+  gsap.killTweensOf(mediaElement);
 
-    // Remove from DOM
-    if (mediaElement.parentNode) {
-      mediaElement.parentNode.removeChild(mediaElement);
+  // Clean up video resources BEFORE removing from DOM
+  if (mediaElement instanceof HTMLVideoElement) {
+    mediaElement.pause();
+    mediaElement.currentTime = 0;
+    mediaElement.removeAttribute('src');
+    mediaElement.load(); // This properly releases video resources
+    
+    // Remove all event listeners
+    mediaElement.removeEventListener('canplay', () => {});
+    mediaElement.removeEventListener('error', () => {});
+  }
+
+  // Remove from DOM
+  if (mediaElement.parentNode) {
+    mediaElement.parentNode.removeChild(mediaElement);
+  }
+};
+
+// Also add this cleanup in useEffect:
+useEffect(() => {
+  return () => {
+    // Cancel any pending media loads
+    currentMediaIdRef.current = null;
+    
+    if (currentMediaRef.current) {
+      cleanupMedia(currentMediaRef.current);
+      currentMediaRef.current = null;
     }
-
-    // Clean up video resources
-    if (mediaElement instanceof HTMLVideoElement) {
-      mediaElement.pause();
-      mediaElement.removeAttribute("src");
-      mediaElement.load(); // This properly releases video resources
-    }
+    
+    // Clean up ambient timelines
+    ambientTimelinesRef.current.forEach((tl) => tl.kill());
+    ambientTimelinesRef.current = [];
+    
+    // Clean up all GSAP animations
+    gsap.killTweensOf("*");
   };
+}, []);
 
   // Handle project hover with title fading
   const handleProjectHover = (

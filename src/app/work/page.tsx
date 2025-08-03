@@ -1,25 +1,27 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { projectsData } from "@/data/projects";
 import ProjectCard from "@/app/components/ProjectCard";
 import { StaggerContainer } from "../hooks/useStaggerAnimation";
+import { ErrorBoundary } from "../components/ErrorBoundary";
 
-// Define the available filter types
-type ProjectTypeFilter =
-  | "ALL"
-  | "NARRATIVE"
-  | "COMMERCIAL"
-  | "MUSIC VIDEO"
-  | "REEL";
+type ProjectTypeFilter = "ALL" | "NARRATIVE" | "COMMERCIAL" | "MUSIC VIDEO" | "REEL";
 
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectTypeFilter>("ALL");
 
-  // Filter projects based on the activeFilter state AND hide projects marked as hiddenFromWorkPage
-  const filteredProjects = projectsData.filter((project) => {
-    if (project.hiddenFromWorkPage) return false;
-    return activeFilter === "ALL" || project.type === activeFilter;
-  });
+  // Memoize filtered projects to prevent unnecessary re-calculations
+  const filteredProjects = useMemo(() => {
+    return projectsData.filter((project) => {
+      if (project.hiddenFromWorkPage) return false;
+      return activeFilter === "ALL" || project.type === activeFilter;
+    });
+  }, [activeFilter]);
+
+  // Memoize filter change handler
+  const handleFilterChange = useCallback((filter: ProjectTypeFilter) => {
+    setActiveFilter(filter);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col items-center text-white">
@@ -48,7 +50,7 @@ export default function WorkPage() {
           ).map((filter) => (
             <button
               key={filter}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => handleFilterChange(filter)} // <- NOW USING THE MEMOIZED HANDLER
               className={`filter-pill py-2 px-3 sm:px-4 md:px-6 rounded-full border border-white transition-colors duration-200 text-xs sm:text-sm md:text-lg lg:text-xl uppercase whitespace-nowrap
               ${
                 activeFilter === filter
@@ -80,14 +82,21 @@ export default function WorkPage() {
             setInitialStyles: true, // Always use JS - simpler and more reliable
           }}
         >
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="project-card w-full max-w-sm sm:max-w-none"
-            >
-              <ProjectCard project={project} />
-            </div>
-          ))}
+{filteredProjects.map((project) => (
+  <ErrorBoundary 
+    key={project.id}
+    fallback={
+      <div className="w-full aspect-video bg-gray-800 rounded-lg flex items-center justify-center">
+        <p className="text-gray-400">Project unavailable</p>
+      </div>
+    }
+  >
+    <div className="project-card w-full max-w-sm sm:max-w-none">
+      <ProjectCard project={project} />
+    </div>
+  </ErrorBoundary>
+))}
+
         </StaggerContainer>
 
         {/* Message if no projects found for filter */}

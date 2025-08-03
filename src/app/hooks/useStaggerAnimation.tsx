@@ -1,8 +1,6 @@
 "use client";
-
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
-
 interface StaggerAnimationOptions {
   delay?: number;
   stagger?: number;
@@ -21,6 +19,7 @@ export const useStaggerAnimation = (options: StaggerAnimationOptions = {}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const hasAnimatedRef = useRef(false);
+  const elementsRef = useRef<Element[]>([]);
 
   const {
     delay = 0.2,
@@ -36,16 +35,29 @@ export const useStaggerAnimation = (options: StaggerAnimationOptions = {}) => {
     setInitialStyles = true,
   } = options;
 
+  // Memoized cleanup function
+  const cleanup = useCallback(() => {
+    if (timelineRef.current) {
+      timelineRef.current.kill();
+      timelineRef.current = null;
+    }
+    // Kill any lingering tweens on the stored elements
+    if (elementsRef.current.length > 0) {
+      gsap.killTweensOf(elementsRef.current);
+    }
+  }, []);
+
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const elements = containerRef.current.querySelectorAll(selector);
+    const elements = Array.from(containerRef.current.querySelectorAll(selector));
     if (elements.length === 0) return;
 
-    // Kill any existing timeline
-    if (timelineRef.current) {
-      timelineRef.current.kill();
-    }
+    // Store elements for cleanup
+    elementsRef.current = elements;
+
+    // Cleanup previous animation
+    cleanup();
 
     // Only set initial styles on first load if setInitialStyles is true
     if (setInitialStyles && !hasAnimatedRef.current) {
@@ -77,11 +89,7 @@ export const useStaggerAnimation = (options: StaggerAnimationOptions = {}) => {
       },
     });
 
-    return () => {
-      if (timelineRef.current) {
-        timelineRef.current.kill();
-      }
-    };
+    return cleanup;
   }, [
     delay,
     stagger,
@@ -94,19 +102,21 @@ export const useStaggerAnimation = (options: StaggerAnimationOptions = {}) => {
     filter,
     selector,
     setInitialStyles,
+    cleanup,
   ]);
 
-  // Method to trigger animation manually (useful for filter changes)
-  const triggerAnimation = (customDelay = 0) => {
+  // Method to trigger animation manually
+  const triggerAnimation = useCallback((customDelay = 0) => {
     if (!containerRef.current) return;
 
-    const elements = containerRef.current.querySelectorAll(selector);
+    const elements = Array.from(containerRef.current.querySelectorAll(selector));
     if (elements.length === 0) return;
 
-    // Kill any existing timeline
-    if (timelineRef.current) {
-      timelineRef.current.kill();
-    }
+    // Store elements for cleanup
+    elementsRef.current = elements;
+
+    // Cleanup previous animation
+    cleanup();
 
     // Set initial state
     gsap.set(elements, {
@@ -132,7 +142,7 @@ export const useStaggerAnimation = (options: StaggerAnimationOptions = {}) => {
         from,
       },
     });
-  };
+  }, [cleanup, selector, opacity, y, scale, filter, duration, ease, stagger, from]);
 
   return { containerRef, triggerAnimation };
 };

@@ -1,5 +1,7 @@
+// src/app/components/ProjectCard.tsx - Improved version
+
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Project } from "@/data/projects";
@@ -11,28 +13,43 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false); // New state to control video playback visibility
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+
+  const handleMouseEnter = useCallback(() => {
+    if (videoRef.current && !videoError) {
+      setIsVideoPlaying(true);
+      videoRef.current.play().catch((error) => {
+        console.warn('Video play failed:', error);
+        setVideoError(true);
+      });
+    }
+  }, [videoError]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (videoRef.current) {
+      setIsVideoPlaying(false);
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, []);
+
+  const handleImageLoadingComplete = useCallback(() => {
+    setThumbnailLoaded(true);
+  }, []);
+
+  const handleVideoError = useCallback(() => {
+    console.warn('Video failed to load:', project.videoUrl);
+    setVideoError(true);
+  }, [project.videoUrl]);
+
+  // Validate project data AFTER hooks
+  if (!project || !project.id || !project.title) {
+    console.warn('Invalid project data:', project);
+    return null;
+  }
 
   const projectDetailLink = `/work/${project.id.toString()}`;
-
-  const handleMouseEnter = () => {
-    if (videoRef.current) {
-      setIsVideoPlaying(true); // Indicate video should be visible and playing
-      videoRef.current.play();
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      setIsVideoPlaying(false); // Indicate video should be hidden and paused
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0; // Reset video to start
-    }
-  };
-
-  const handleImageLoadingComplete = () => {
-    setThumbnailLoaded(true);
-  };
 
   return (
     <Link
@@ -41,37 +58,50 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* 1. Loading Skeleton/Placeholder */}
+      {/* Loading Skeleton */}
       {!thumbnailLoaded && (
         <div className="absolute inset-0 w-full h-full bg-gray-800 animate-pulse"></div>
       )}
 
-      {/* 2. Next.js Image Component for the Thumbnail */}
+      {/* Thumbnail Image */}
       <Image
         src={project.thumbnailUrl}
         alt={`${project.title} thumbnail`}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         onLoad={handleImageLoadingComplete}
-        // Image fades in once loaded, and fades out when video plays (on hover)
+        onError={() => console.warn('Thumbnail failed to load:', project.thumbnailUrl)}
         className={`object-cover transition-opacity duration-300 ${
           thumbnailLoaded ? "opacity-100" : "opacity-0"
-        } ${isVideoPlaying ? "opacity-0" : "opacity-100"}`}
+        } ${isVideoPlaying && !videoError ? "opacity-0" : "opacity-100"}`}
       />
 
-      {/* 3. Video Element */}
-      <video
-        ref={videoRef}
-        src={project.videoUrl}
-        title={project.title}
-        loop
-        muted
-        playsInline
-        // Video is initially hidden (opacity-0) and only appears when playing (on hover)
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-          isVideoPlaying ? "opacity-100" : "opacity-0"
-        }`}
-      />
+      {/* Video Element - only render if we have a valid video URL and no error */}
+{project.videoUrl && !videoError && (
+  <video
+    ref={videoRef}
+    title={project.title}
+    loop
+    muted
+    playsInline
+    onError={handleVideoError}
+    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+      isVideoPlaying ? "opacity-100" : "opacity-0"
+    }`}
+  >
+    {/* WebM first (smaller file size) */}
+    <source 
+      src={project.videoUrl.replace('.mp4', '.webm')} 
+      type="video/webm" 
+    />
+    {/* MP4 fallback */}
+    <source 
+      src={project.videoUrl} 
+      type="video/mp4" 
+    />
+    Your browser does not support the video tag.
+  </video>
+)}
 
       {/* Title and Type Overlay */}
       <div className="absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black/50 to-transparent">

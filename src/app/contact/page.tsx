@@ -12,38 +12,51 @@ export default function ContactPage() {
     "",
   );
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("");
+const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitStatus("");
 
-    if (!form.current) return;
+  if (!form.current) return;
 
-    //Gurjit's EmailJS Credentials, contact if anything needed
-    emailjs
-      .sendForm(
-        "service_vtxdbhl",
-        "template_tsy98u9", // Replace with your EmailJS template ID
-        form.current,
-        "h4qDCoPJfRSKwf4Sd", // Replace with your EmailJS public key
-      )
-      .then(
-        (result: EmailJSResponseStatus) => {
-          console.log(result.text);
-          setSubmitStatus("success");
-          if (form.current) {
-            form.current.reset();
-          }
-        },
-        (error: EmailJSResponseStatus) => {
-          console.log(error.text);
-          setSubmitStatus("error");
-        },
-      )
-      .finally(() => {
-        setIsSubmitting(false);
-      });
-  };
+  // Get environment variables
+  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+  // Validate environment variables exist
+  if (!serviceId || !templateId || !publicKey) {
+    console.error('EmailJS environment variables are missing');
+    setSubmitStatus("error");
+    setIsSubmitting(false);
+    return;
+  }
+
+  // Use environment variables instead of hardcoded values
+  emailjs
+    .sendForm(
+      serviceId,        // was: "service_vtxdbhl"
+      templateId,       // was: "template_tsy98u9"
+      form.current,
+      publicKey,        // was: "h4qDCoPJfRSKwf4Sd"
+    )
+    .then(
+      (result: EmailJSResponseStatus) => {
+        console.log(result.text);
+        setSubmitStatus("success");
+        if (form.current) {
+          form.current.reset();
+        }
+      },
+      (error: EmailJSResponseStatus) => {
+        console.log(error.text);
+        setSubmitStatus("error");
+      },
+    )
+    .finally(() => {
+      setIsSubmitting(false);
+    });
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-8 sm:py-8">

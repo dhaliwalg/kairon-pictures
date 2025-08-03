@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-40 bg-transparent text-black pt-4 pb-4 pointer-events-none">
-      <nav className="flex justify-between items-center h-full text-lg md:text-xl lg:text-2xl font-bold pointer-events-none px-8 w-full">
+      <nav className="flex justify-between items-center h-full pointer-events-none px-4 sm:px-8 w-full">
         {/* Logo on far left */}
         <div className="flex-shrink-0">
           <Link href="/" className="hover:opacity-80 py-2 pointer-events-auto">
@@ -21,13 +21,13 @@ const Header = () => {
               alt="Home"
               width={30}
               height={30}
-              className="h-auto"
+              className="h-auto w-6 sm:w-8"
             />
           </Link>
         </div>
 
-        {/* Navigation Links in center space */}
-        <div className="flex space-x-60 flex-1 justify-center">
+        {/* Navigation Links - responsive spacing */}
+        <div className="flex space-x-4 sm:space-x-8 md:space-x-12 lg:space-x-60 flex-1 justify-center text-sm sm:text-lg md:text-xl lg:text-2xl font-bold">
           <Link
             href="/work"
             className={`hover:text-white py-2 pointer-events-auto ${
@@ -56,15 +56,15 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Social Icons stuck to right corner */}
-        <div className="flex items-center space-x-4 pointer-events-auto flex-shrink-0">
+        {/* Social Icons - responsive sizing and spacing */}
+        <div className="flex items-center space-x-2 sm:space-x-4 pointer-events-auto flex-shrink-0">
           <Link
             href="https://www.instagram.com/kaironpictures/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition-colors"
           >
-            <FaInstagram size={24} />
+            <FaInstagram size={18} className="sm:w-6 sm:h-6" />
           </Link>
           <Link
             href="https://www.linkedin.com/company/kairon-pictures-llc"
@@ -72,7 +72,7 @@ const Header = () => {
             rel="noopener noreferrer"
             className="hover:text-white transition-colors"
           >
-            <FaLinkedinIn size={24} />
+            <FaLinkedinIn size={18} className="sm:w-6 sm:h-6" />
           </Link>
         </div>
       </nav>

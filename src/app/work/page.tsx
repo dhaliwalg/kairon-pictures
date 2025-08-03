@@ -26,14 +26,12 @@ export default function WorkPage() {
   });
 
   return (
-    <div className="min-h-screen flex flex-col items-center text-white px-0 py-0">
-      {/* Changed max-w-[1400px] to max-w-[1920px] or even larger */}
-      <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-24 pt-32 pb-16 mx-auto">
-        {/* Filter Buttons Section - Now with boxed/pill style */}
+    <div className="min-h-screen flex flex-col items-center text-white">
+      {/* Container with proper overflow handling */}
+      <div className="w-full max-w-[1920px] px-4 sm:px-6 md:px-16 lg:px-24 pt-24 sm:pt-32 pb-16 mx-auto overflow-x-hidden">
+        {/* Filter Buttons Section - Mobile optimized */}
         <SubtleTextAnimation intensity="subtle">
-          <div className="flex justify-center mb-16 space-x-4 md:space-x-6 font-medium text-lg md:text-xl uppercase pointer-events-auto">
-            {" "}
-            {/* ADDED pointer-events-auto HERE */}
+          <div className="flex flex-wrap justify-center mb-12 sm:mb-16 gap-2 sm:gap-4 md:gap-6 font-medium pointer-events-auto">
             {(
               [
                 "ALL",
@@ -41,40 +39,40 @@ export default function WorkPage() {
                 "COMMERCIAL",
                 "MUSIC VIDEO",
               ] as ProjectTypeFilter[]
-            ) // Keep filter options as they were (excluding REEL)
-              .map((filter) => (
-                <button
-                  key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                  className={`py-2 px-6 rounded-full border border-white transition-colors duration-200
-                  ${
-                    activeFilter === filter
-                      ? "bg-white text-black"
-                      : "bg-black text-white hover:bg-gray-800"
-                  }`}
-                >
-                  {filter}
-                </button>
-              ))}
+            ).map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`py-2 px-3 sm:px-4 md:px-6 rounded-full border border-white transition-colors duration-200 text-xs sm:text-sm md:text-lg lg:text-xl uppercase whitespace-nowrap
+                ${
+                  activeFilter === filter
+                    ? "bg-white text-black"
+                    : "bg-black text-white hover:bg-gray-800"
+                }`}
+              >
+                {/* Shorter labels for mobile */}
+                <span className="sm:hidden">
+                  {filter === "MUSIC VIDEO" ? "MUSIC" : filter}
+                </span>
+                <span className="hidden sm:inline">{filter}</span>
+              </button>
+            ))}
           </div>
         </SubtleTextAnimation>
 
-        {/* Project Grid - Wrapped with minimal animation */}
-
-        <div className="pointer-events-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 md:gap-8 justify-items-center">
-          {" "}
+        {/* Project Grid - Mobile optimized with better spacing */}
+        <div className="pointer-events-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8 justify-items-center w-full">
           {filteredProjects.map((project) => (
-            // Ensure ProjectCard's internal Link or wrapping div has pointer-events-auto
-            <ProjectCard key={project.id} project={project} />
+            <div key={project.id} className="w-full max-w-sm sm:max-w-none">
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
 
         {/* Message if no projects found for filter */}
         {filteredProjects.length === 0 && (
           <SubtleTextAnimation intensity="subtle">
-            <p className="text-center text-gray-500 mt-12 text-lg pointer-events-auto">
-              {" "}
-              {/* ADDED pointer-events-auto HERE if this text should be selectable/interactable */}
+            <p className="text-center text-gray-500 mt-12 text-base sm:text-lg pointer-events-auto">
               No projects found for this category.
             </p>
           </SubtleTextAnimation>

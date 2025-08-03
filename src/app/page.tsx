@@ -27,7 +27,7 @@ export default function HomePage() {
     "More - Jordan Webb ft. Luey Northern",
     "Nigaam Jewels",
     "Pass Go - Jordan Webb",
-    "Damien’s Gym",
+    "Damien's Gym",
   ];
 
   // Filter projectsData to get only the desired projects
@@ -405,7 +405,7 @@ export default function HomePage() {
     };
   }, []);
 
-  // Generate random positions for titles (only need 6 now)
+  // Generate random positions for titles (keep desktop positions unchanged)
   const getRandomPosition = (index: number) => {
     const positions = [
       { top: "20%", left: "20%" },
@@ -429,7 +429,7 @@ export default function HomePage() {
         )}
       </div>
 
-      {/* Project titles scattered around - now limited to 6 */}
+      {/* Project titles scattered around - now with responsive positioning */}
       {limitedProjects.map((project, index) => {
         const position = getRandomPosition(index);
         return (
@@ -443,12 +443,51 @@ export default function HomePage() {
             }
             onMouseLeave={() => handleProjectHover(null, null)}
           >
-            <span className="text-black/80 text-lg md:text-2xl font-light tracking-wide hover:text-white transition-colors duration-300">
+            <span className="text-black/80 text-sm sm:text-lg md:text-2xl font-light tracking-wide hover:text-white transition-colors duration-300 leading-tight">
               {project.title}
             </span>
           </Link>
         );
       })}
+
+      {/* Mobile-specific positioning adjustments using CSS */}
+      <style jsx>{`
+        @media (max-width: 767px) {
+          .project-title:nth-child(2) {
+            top: 15% !important;
+            left: 10% !important;
+          } /* Doritos Mortis */
+          .project-title:nth-child(3) {
+            top: 20% !important;
+            right: 15% !important;
+            left: auto !important;
+          } /* Graywind Blinds */
+          .project-title:nth-child(4) {
+            top: 8% !important;
+            left: 25% !important;
+            right: auto !important;
+            bottom: auto !important;
+          } /* More - Jordan Webb */
+          .project-title:nth-child(5) {
+            bottom: 25% !important;
+            left: 15% !important;
+            right: auto !important;
+            top: auto !important;
+          } /* Nigaam Jewels */
+          .project-title:nth-child(6) {
+            bottom: 35% !important;
+            right: 10% !important;
+            left: auto !important;
+            top: auto !important;
+          } /* Pass Go */
+          .project-title:nth-child(7) {
+            bottom: 15% !important;
+            right: 20% !important;
+            left: auto !important;
+            top: auto !important;
+          } /* Damien's Gym */
+        }
+      `}</style>
 
       {/* Central logo/brand */}
       <div
@@ -461,9 +500,9 @@ export default function HomePage() {
               <Image
                 src="/BLACKLOGO.png"
                 alt="Home"
-                width={250}
-                height={100}
-                className="h-auto"
+                width={200}
+                height={80}
+                className="h-auto w-32 sm:w-48 md:w-60"
               />
             </div>
           </Link>

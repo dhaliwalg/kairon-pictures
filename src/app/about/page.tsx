@@ -27,11 +27,18 @@ export default function AboutPage() {
         >
           <div className="description-paragraph">
             <p className="text-base sm:text-lg md:text-[22px] leading-[1.4] sm:leading-[1.3] tracking-[0.01em] font-normal mb-6 sm:mb-8">
-Kairon Pictures is a production company driven by instinct and intention. We create narrative films, commercials, music videos, and anything that makes our hearts race. <br/><br/>
-
-We lead with taste, not trends, crafting tailor-made work for collaborators who share our obsession with the bold, the visually striking, and the emotionally honest. Our standard is simple: if it doesn’t move us, it doesn’t make the cut. <br/><br/>
-
-Our team of award-winning directors and producers represents the next generation of storytelling, with recognition from the Tribeca Festival, the Directors Guild of America, Cannes Lions, and more.
+              Kairon Pictures is a production company driven by instinct and
+              intention. We create narrative films, commercials, music videos,
+              and anything that makes our hearts race. <br />
+              <br />
+              We lead with taste, not trends, crafting tailor-made work for
+              collaborators who share our obsession with the bold, the visually
+              striking, and the emotionally honest. Our standard is simple: if
+              it doesn&apos;t move us, it doesn&apos;t make the cut. <br />
+              <br />
+              Our team of award-winning directors and producers represents the
+              next generation of storytelling, with recognition from the Tribeca
+              Festival, the Directors Guild of America, Cannes Lions, and more.
             </p>
           </div>
         </StaggerContainer>
@@ -51,95 +58,95 @@ Our team of award-winning directors and producers represents the next generation
           }}
         >
           {/* Mobile: 2x5 grid, Desktop: 2 rows */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 items-center justify-center gap-4 sm:gap-6 md:gap-x-8 lg:gap-x-12 xl:gap-x-16 gap-y-4 sm:gap-y-6 mb-4">
-            <div className="partner-logo">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 items-center justify-center gap-4 sm:gap-6 md:gap-x-8 lg:gap-x-12 xl:gap-x-16 gap-y-6 sm:gap-y-8 mb-4">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/1.4.png"
                 alt="1.4"
-                width={250}
+                width={200}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/tribeca.png"
                 alt="Tribeca"
-                width={250}
+                width={200}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/dga.png"
                 alt="DGA"
-                width={250}
+                width={200}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/berlin.png"
                 alt="Berlin"
-                width={250}
+                width={200}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/yda.png"
                 alt="YDA"
-                width={250}
+                width={200}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/sony.png"
                 alt="Sony"
-                width={250}
+                width={200}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/nascar.png"
                 alt="NASCAR"
-                width={250}
+                width={200}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/appletv.png"
                 alt="Apple TV"
-                width={250}
+                width={200}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/jgr.png"
                 alt="JGR"
-                width={250}
+                width={200}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
-            <div className="partner-logo">
+            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
               <Image
                 src="/alamo.png"
                 alt="Alamo Records"
-                width={250}
+                width={200}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="max-h-full max-w-full w-auto h-auto object-contain"
               />
             </div>
           </div>

@@ -45,7 +45,7 @@ export const projectsData: Project[] = [
   },
   {
     id: 3,
-    title: "Call me a Liar - Dola",
+    title: "Call Me a Liar - Dola",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/call-me-a-liar-dola.jpg",
     videoUrl: "/optimized-project-videos/call-me-a-liar-dola.mp4",
@@ -174,7 +174,7 @@ export const projectsData: Project[] = [
   },
   {
     id: 7,
-    title: "More - Jordan Webb ft. Luey Northern",
+    title: "MORE",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/more-jordan-webb-ft-luey-northern.png",
     videoUrl: "/optimized-project-videos/more-jordan-webb-ft-luey-northern.mp4",
@@ -265,7 +265,7 @@ export const projectsData: Project[] = [
   },
   {
     id: 10,
-    title: "Pass Go - Jordan Webb",
+    title: "Pass GO",
     type: "MUSIC VIDEO",
     thumbnailUrl: "/project-thumbnails/pass-go-jordan-webb.png",
     videoUrl: "/optimized-project-videos/pass-go-jordan-webb.mp4",

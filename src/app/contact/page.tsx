@@ -68,7 +68,7 @@ export default function ContactPage() {
             >
               <div className="contact-info-item">
                 <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-black leading-tight mb-2">
-                  Become a <span className="italic">Kaironiac</span>
+                  Become a <span className="font-medium">Kaironiac</span>
                 </h1>
               </div>
 

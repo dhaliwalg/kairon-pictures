@@ -24,9 +24,9 @@ export default function HomePage() {
   const desiredProjectTitles = [
     "Doritos Mortis",
     "Graywind Blinds",
-    "More - Jordan Webb ft. Luey Northern",
+    "MORE",
     "Nigaam Jewels",
-    "Pass Go - Jordan Webb",
+    "Pass GO",
     "Damien's Gym",
   ];
 
@@ -507,7 +507,7 @@ export default function HomePage() {
             }
             onMouseLeave={() => handleProjectHover(null, null)}
           >
-            <span className="text-black/80 text-sm sm:text-lg md:text-2xl font-light tracking-wide hover:text-white transition-colors duration-300 leading-tight">
+            <span className="text-black/80 text-sm sm:text-base md:text-xl font-light tracking-wide hover:text-white transition-colors duration-300 leading-tight">
               {project.title}
             </span>
           </Link>
@@ -531,7 +531,7 @@ export default function HomePage() {
             left: 25% !important;
             right: auto !important;
             bottom: auto !important;
-          } /* More - Jordan Webb */
+          } /* MORE */
           .project-title:nth-child(5) {
             bottom: 25% !important;
             left: 15% !important;
@@ -543,7 +543,7 @@ export default function HomePage() {
             right: 10% !important;
             left: auto !important;
             top: auto !important;
-          } /* Pass Go */
+          } /* Pass GO */
           .project-title:nth-child(7) {
             bottom: 15% !important;
             right: 20% !important;

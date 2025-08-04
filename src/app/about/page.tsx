@@ -27,11 +27,11 @@ export default function AboutPage() {
         >
           <div className="description-paragraph">
             <p className="text-base sm:text-lg md:text-[22px] leading-[1.4] sm:leading-[1.3] tracking-[0.01em] font-normal mb-6 sm:mb-8">
-              This is sample text that will be replaced with the new bio
-              content. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+Kairon Pictures is a production company driven by instinct and intention. We create narrative films, commercials, music videos, and anything that makes our hearts race. <br/><br/>
+
+We lead with taste, not trends, crafting tailor-made work for collaborators who share our obsession with the bold, the visually striking, and the emotionally honest. Our standard is simple: if it doesn’t move us, it doesn’t make the cut. <br/><br/>
+
+Our team of award-winning directors and producers represents the next generation of storytelling, with recognition from the Tribeca Festival, the Directors Guild of America, Cannes Lions, and more.
             </p>
           </div>
         </StaggerContainer>

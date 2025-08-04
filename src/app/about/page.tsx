@@ -58,7 +58,7 @@ export default function AboutPage() {
                 alt="1.4"
                 width={250}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -67,7 +67,7 @@ export default function AboutPage() {
                 alt="Tribeca"
                 width={250}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -76,7 +76,7 @@ export default function AboutPage() {
                 alt="DGA"
                 width={250}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -85,7 +85,7 @@ export default function AboutPage() {
                 alt="Berlin"
                 width={250}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 alt="YDA"
                 width={250}
                 height={80}
-                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -103,7 +103,7 @@ export default function AboutPage() {
                 alt="Sony"
                 width={250}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -112,7 +112,7 @@ export default function AboutPage() {
                 alt="NASCAR"
                 width={250}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -121,7 +121,7 @@ export default function AboutPage() {
                 alt="Apple TV"
                 width={250}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -130,7 +130,7 @@ export default function AboutPage() {
                 alt="JGR"
                 width={250}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
             <div className="partner-logo">
@@ -139,7 +139,7 @@ export default function AboutPage() {
                 alt="Alamo Records"
                 width={250}
                 height={80}
-                className="invert h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain flex-shrink-0 mx-auto"
               />
             </div>
           </div>
@@ -156,7 +156,7 @@ export default function AboutPage() {
             setInitialStyles: false,
           }}
         >
-          <div className="cta-text">
+          <div className="cta-text text-black">
             <p className="text-lg sm:text-xl md:text-[24px] font-normal">
               <span>Become a </span>
               <Link
@@ -165,7 +165,7 @@ export default function AboutPage() {
               >
                 KAIRONIAC
               </Link>
-              <span className="text-white"> →</span>
+              <span> →</span>
             </p>
           </div>
         </StaggerContainer>

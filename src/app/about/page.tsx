@@ -43,7 +43,7 @@ export default function AboutPage() {
           </div>
         </StaggerContainer>
 
-        {/* Partners section with stagger animation */}
+        {/* Partners section with stagger animation - Updated to match reference */}
         <StaggerContainer
           className="mb-12 sm:mb-16 md:mb-12"
           options={{
@@ -57,97 +57,104 @@ export default function AboutPage() {
             setInitialStyles: false,
           }}
         >
-          {/* Mobile: 2x5 grid, Desktop: 2 rows */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 items-center justify-center gap-4 sm:gap-6 md:gap-x-8 lg:gap-x-12 xl:gap-x-16 gap-y-6 sm:gap-y-8 mb-4">
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/1.4.png"
-                alt="1.4"
-                width={200}
-                height={80}
-                className="max-h-full max-w-full w-auto h-auto object-contain"
-              />
+          {/* Fixed 2x5 grid layout to match reference */}
+          <div className="space-y-8 md:space-y-12">
+            {/* Top row */}
+            <div className="flex items-center justify-between gap-4 md:gap-8">
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/1.4.png"
+                  alt="1.4"
+                  width={120}
+                  height={60}
+                  className="max-h-[40px] md:max-h-[60px] w-auto object-contain"
+                />
+              </div>
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/tribeca.png"
+                  alt="Tribeca"
+                  width={160}
+                  height={60}
+                  className="max-h-[40px] md:max-h-[60px] w-auto object-contain"
+                />
+              </div>
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/dga.png"
+                  alt="DGA"
+                  width={100}
+                  height={100}
+                  className="max-h-[50px] md:max-h-[80px] w-auto object-contain"
+                />
+              </div>
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/berlin.png"
+                  alt="Berlin"
+                  width={140}
+                  height={80}
+                  className="invert max-h-[45px] md:max-h-[70px] w-auto object-contain"
+                />
+              </div>
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/yda.png"
+                  alt="YDA"
+                  width={100}
+                  height={100}
+                  className="invert max-h-[50px] md:max-h-[80px] w-auto object-contain"
+                />
+              </div>
             </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/tribeca.png"
-                alt="Tribeca"
-                width={200}
-                height={80}
-                className="max-h-full max-w-full w-auto h-auto object-contain"
-              />
-            </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/dga.png"
-                alt="DGA"
-                width={200}
-                height={80}
-                className="max-h-full max-w-full w-auto h-auto object-contain"
-              />
-            </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/berlin.png"
-                alt="Berlin"
-                width={200}
-                height={80}
-                className="invert max-h-full max-w-full w-auto h-auto object-contain"
-              />
-            </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/yda.png"
-                alt="YDA"
-                width={200}
-                height={80}
-                className="invert max-h-full max-w-full w-auto h-auto object-contain"
-              />
-            </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/sony.png"
-                alt="Sony"
-                width={200}
-                height={80}
-                className="max-h-full max-w-full w-auto h-auto object-contain"
-              />
-            </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/nascar.png"
-                alt="NASCAR"
-                width={200}
-                height={80}
-                className="max-h-full max-w-full w-auto h-auto object-contain"
-              />
-            </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/appletv.png"
-                alt="Apple TV"
-                width={200}
-                height={80}
-                className="max-h-full max-w-full w-auto h-auto object-contain"
-              />
-            </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/jgr.png"
-                alt="JGR"
-                width={200}
-                height={80}
-                className="max-h-full max-w-full w-auto h-auto object-contain"
-              />
-            </div>
-            <div className="partner-logo flex items-center justify-center h-16 sm:h-18 md:h-20 lg:h-22 xl:h-24">
-              <Image
-                src="/alamo.png"
-                alt="Alamo Records"
-                width={200}
-                height={80}
-                className="max-h-full max-w-full w-auto h-auto object-contain"
-              />
+
+            {/* Bottom row */}
+            <div className="flex items-center justify-between gap-4 md:gap-8">
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/sony.png"
+                  alt="Sony"
+                  width={140}
+                  height={60}
+                  className="max-h-[35px] md:max-h-[50px] w-auto object-contain"
+                />
+              </div>
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/nascar.png"
+                  alt="NASCAR"
+                  width={200}
+                  height={80}
+                  className="max-h-[60px] md:max-h-[90px] w-auto object-contain"
+                />
+              </div>
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/appletv.png"
+                  alt="Apple TV"
+                  width={120}
+                  height={60}
+                  className="max-h-[32px] md:max-h-[48px] w-auto object-contain"
+                />
+              </div>
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/jgr.png"
+                  alt="JGR"
+                  width={140}
+                  height={60}
+                  className="max-h-[30px] md:max-h-[45px] w-auto object-contain"
+                />
+              </div>
+              <div className="partner-logo flex items-center justify-center flex-1">
+                <Image
+                  src="/alamo.png"
+                  alt="Alamo Records"
+                  width={200}
+                  height={80}
+                  className="max-h-[60px] md:max-h-[90px] w-auto object-contain"
+                />
+              </div>
             </div>
           </div>
         </StaggerContainer>

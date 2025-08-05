@@ -76,7 +76,7 @@ export default function AboutPage() {
                   alt="Tribeca"
                   width={160}
                   height={60}
-                  className="max-h-[40px] md:max-h-[60px] w-auto object-contain"
+                  className="max-h-[35px] md:max-h-[52px] w-auto object-contain"
                 />
               </div>
               <div className="partner-logo flex items-center justify-center flex-1">
@@ -94,7 +94,7 @@ export default function AboutPage() {
                   alt="Berlin"
                   width={140}
                   height={80}
-                  className="invert max-h-[45px] md:max-h-[70px] w-auto object-contain"
+                  className="invert max-h-[38px] md:max-h-[58px] w-auto object-contain"
                 />
               </div>
               <div className="partner-logo flex items-center justify-center flex-1">
@@ -107,7 +107,7 @@ export default function AboutPage() {
                 />
               </div>
             </div>
-
+            
             {/* Bottom row */}
             <div className="flex items-center justify-between gap-4 md:gap-8">
               <div className="partner-logo flex items-center justify-center flex-1">
